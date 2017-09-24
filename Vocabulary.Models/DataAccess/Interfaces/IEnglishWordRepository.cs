@@ -11,8 +11,8 @@ namespace Vocabulary.Models.DataAccess.Interfaces
 {
     public interface IEnglishWordRepository
     {
-        Task<ObservableCollection<EnglishWord>> GetAllWords();
-        Task<ObservableCollection<EnglishWord>> GetWordsByFilter(Expression<Predicate<EnglishWord>> filter);
-        Task<EnglishWord> GetSingleWordByFilter(Expression<Predicate<EnglishWord>> filter);
+        ObservableCollection<EnglishWord> GetAllWords();
+        ObservableCollection<EnglishWord> GetWordsByFilter(Expression<Predicate<EnglishWord>> filter);
+        EnglishWord GetSingleWordByFilter(Expression<Predicate<EnglishWord>> filter);
     }
 }

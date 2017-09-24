@@ -15,6 +15,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using Vocabulary.Models.DataAccess.Interfaces;
+using Vocabulary.Models.DataAccess.Repositories;
 
 namespace Vocabulary.ViewModel
 {
@@ -43,9 +45,13 @@ namespace Vocabulary.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+
+            SimpleIoc.Default.Register<IEnglishWordRepository, DefaultEnglishWordRepository>();
+
+
         }
 
-        public MainViewModel Main
+        public MainViewModel MainViewModel
         {
             get
             {

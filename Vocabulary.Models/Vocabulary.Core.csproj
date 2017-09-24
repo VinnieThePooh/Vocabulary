@@ -52,6 +52,7 @@
     <Compile Include="DataAccess\Configurations\WordTranslationConfiguration.cs" />
     <Compile Include="DataAccess\DefaultIfNotExistDbInitializer.cs" />
     <Compile Include="DataAccess\Interfaces\IEnglishWordRepository.cs" />
+    <Compile Include="DataAccess\Repositories\DefaultEnglishWordRepository.cs" />
     <Compile Include="DataAccess\VocabularyContext.cs" />
     <Compile Include="Infrastructure\Cultures.cs" />
     <Compile Include="Infrastructure\DbSeeding.cs" />

@@ -9,7 +9,6 @@ namespace Vocabulary.Models.Infrastructure
         {
              if (context == null)
                  throw new ArgumentNullException(nameof(context));
-
              TrySeedFromFile(context);
         }
 

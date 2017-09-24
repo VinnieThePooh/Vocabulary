@@ -1,0 +1,25 @@
+﻿<Window x:Class="Vocabulary.MainWindow"
+        DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vocabulary"
+        mc:Ignorable="d"
+        Title="MainViewModelWindow" Height="350" Width="525">
+    <Grid>
+        <DataGrid ItemsSource="{Binding EnglishWords}"
+                  AutoGenerateColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserAddRows="False"
+                  CanUserSortColumns="True"
+                  CanUserReorderColumns="True"
+                  CanUserDeleteRows="False">
+            <DataGrid.Columns>
+               <DataGridTextColumn Header="Id" Binding="{Binding EnglishWordId}" Visibility="Hidden"/>
+               <DataGridTextColumn Width="5*" Header="Text" Binding="{Binding Text}"/>
+               <DataGridTextColumn Width="1*" Header="Culture" Binding="{Binding Culture}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

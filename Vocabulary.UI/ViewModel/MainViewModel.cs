@@ -1,4 +1,9 @@
+using System;
+using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
+using Vocabulary.Models.DataAccess.Interfaces;
+using Vocabulary.Models.Models;
+using System.Threading.Tasks;
 
 namespace Vocabulary.ViewModel
 {
@@ -19,16 +24,36 @@ namespace Vocabulary.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+
+        #region Fields private 
+
+        readonly IEnglishWordRepository wordsRepository;
+
+        private ObservableCollection<EnglishWord> englishWords;
+
+        #endregion
+
+        public MainViewModel(IEnglishWordRepository repository)
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            wordsRepository = repository ?? throw new ArgumentNullException(nameof(repository));
+            
+        }
+
+
+        public ObservableCollection<EnglishWord> EnglishWords
+        {
+            get
+            {
+                if (englishWords == null)
+                    englishWords = wordsRepository.GetAllWords();
+                return englishWords;
+            }
+
+            set
+            {
+                englishWords = value;
+                RaisePropertyChanged(nameof(EnglishWords));
+            }
         }
     }
 }
