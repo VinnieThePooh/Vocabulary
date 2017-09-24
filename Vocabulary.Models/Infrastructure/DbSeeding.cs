@@ -9,11 +9,11 @@ namespace Vocabulary.Models.Infrastructure
         {
              if (context == null)
                  throw new ArgumentNullException(nameof(context));
-             TrySeedFromFile(context);
+             TrySeedFromFiles(context);
         }
 
 
-        private static void TrySeedFromFile(VocabularyContext context)
+        private static void TrySeedFromFiles(VocabularyContext context)
         {
             
         }

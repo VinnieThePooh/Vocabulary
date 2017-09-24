@@ -13,6 +13,7 @@ namespace Vocabulary.Models.DataAccess.Configurations
             ToTable(TableNames.Words);
             Property(x => x.Text)
                 .HasMaxLength(200)
+                .IsRequired()
                 .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute {IsUnique = true}));
             HasMany(x => x.Translations).WithRequired(x => x.Word).HasForeignKey(x => x.IdWord);
             Property(x => x.Transcription).HasMaxLength(200);

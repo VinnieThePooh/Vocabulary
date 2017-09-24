@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="MainViewModelWindow" Height="350" Width="525">
     <Grid>
-        <DataGrid ItemsSource="{Binding EnglishWords}"
+        <DataGrid ItemsSource="{Binding Path=EnglishWords}"
+                  SelectionMode="Single"
                   AutoGenerateColumns="False"
                   CanUserResizeRows="False"
                   CanUserAddRows="False"
@@ -16,9 +17,26 @@
                   CanUserReorderColumns="True"
                   CanUserDeleteRows="False">
             <DataGrid.Columns>
-               <DataGridTextColumn Header="Id" Binding="{Binding EnglishWordId}" Visibility="Hidden"/>
-               <DataGridTextColumn Width="5*" Header="Text" Binding="{Binding Text}"/>
-               <DataGridTextColumn Width="1*" Header="Culture" Binding="{Binding Culture}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding EnglishWordId}" Visibility="Hidden"/>
+                <DataGridTemplateColumn Header="Text" Width="4*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Text}"
+                                       Padding="5"
+                                       TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Culture" CanUserResize="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Culture}"
+                                       Padding="5"
+                                       TextWrapping="Wrap"
+                                       FontSize="12"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

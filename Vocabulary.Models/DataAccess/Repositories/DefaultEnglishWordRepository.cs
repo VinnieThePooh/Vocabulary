@@ -1,34 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.Models;
 
 namespace Vocabulary.Models.DataAccess.Repositories
 {
    public class DefaultEnglishWordRepository: IEnglishWordRepository
-    {
+   {
+        private readonly Func<VocabularyContext> vocabularyContext;
+
+        public DefaultEnglishWordRepository(Func<VocabularyContext> context)
+        {
+            vocabularyContext = context ?? throw new ArgumentNullException(nameof(context)); 
+        }
+
         public ObservableCollection<EnglishWord> GetAllWords()
         {
-            return new ObservableCollection<EnglishWord>(new List<EnglishWord>
+            using (var context = vocabularyContext())
             {
-                new EnglishWord {Text = "collateral", EnglishWordId = 1},
-                new EnglishWord {Text = "rutter", EnglishWordId = 2}
-            });
+                return new ObservableCollection<EnglishWord>(context.Words);
+            }
         }
 
-        public ObservableCollection<EnglishWord> GetWordsByFilter(Expression<Predicate<EnglishWord>> filter)
+        public ObservableCollection<EnglishWord> GetWordsByFilter(Expression<Func<EnglishWord,bool>> filter)
         {
-            throw new NotImplementedException();
+            using (var context = vocabularyContext())
+            {
+                return new ObservableCollection<EnglishWord>(context.Words.Where(filter));
+            }
         }
 
-        public EnglishWord GetSingleWordByFilter(Expression<Predicate<EnglishWord>> filter)
+        public EnglishWord GetSingleWordByFilter(Expression<Func<EnglishWord,bool>> filter)
         {
-            throw new NotImplementedException();
+            using (var context = vocabularyContext())
+            {
+                return context.Words.SingleOrDefault(filter);
+            }
         }
     }
 }

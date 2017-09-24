@@ -15,6 +15,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using System;
+using Vocabulary.Models.DataAccess;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.DataAccess.Repositories;
 
@@ -45,9 +47,8 @@ namespace Vocabulary.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
-
             SimpleIoc.Default.Register<IEnglishWordRepository, DefaultEnglishWordRepository>();
-
+            SimpleIoc.Default.Register(() => new Func<VocabularyContext>(() => new VocabularyContext()));
 
         }
 

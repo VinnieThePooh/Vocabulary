@@ -12,7 +12,7 @@ namespace Vocabulary.Models.DataAccess.Interfaces
     public interface IEnglishWordRepository
     {
         ObservableCollection<EnglishWord> GetAllWords();
-        ObservableCollection<EnglishWord> GetWordsByFilter(Expression<Predicate<EnglishWord>> filter);
-        EnglishWord GetSingleWordByFilter(Expression<Predicate<EnglishWord>> filter);
+        ObservableCollection<EnglishWord> GetWordsByFilter(Expression<Func<EnglishWord,bool>> filter);
+        EnglishWord GetSingleWordByFilter(Expression<Func<EnglishWord,bool>> filter);
     }
 }
