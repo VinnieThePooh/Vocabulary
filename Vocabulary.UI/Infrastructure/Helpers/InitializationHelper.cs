@@ -19,8 +19,7 @@ namespace Vocabulary.Infrastructure.Helpers
             var dirPath = (string)AppDomain.CurrentDomain.GetData("DataDirectory");
             if (string.IsNullOrEmpty(dirPath))
                  throw new ArgumentNullException("DataDirectory keyword is not set");
-
-
+            
             if (!Directory.Exists(dirPath))
                 Directory.CreateDirectory(dirPath);
         }

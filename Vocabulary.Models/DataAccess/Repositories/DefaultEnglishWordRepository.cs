@@ -39,5 +39,17 @@ namespace Vocabulary.Models.DataAccess.Repositories
                 return context.Words.SingleOrDefault(filter);
             }
         }
-    }
+
+       public int AddNewWord(EnglishWord word)
+       {
+           if (word == null) throw new ArgumentNullException(nameof(word));
+           using (var context = vocabularyContext())
+           {
+               word.AdditionDate = DateTime.Now;
+               var newlyAddedWord = context.Words.Add(word);
+               context.SaveChanges();
+               return newlyAddedWord.EnglishWordId;
+           }
+        }
+   }
 }

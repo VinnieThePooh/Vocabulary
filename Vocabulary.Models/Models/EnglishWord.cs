@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Vocabulary.Models.Infrastructure;
 
 namespace Vocabulary.Models.Models
@@ -17,8 +18,11 @@ namespace Vocabulary.Models.Models
         public Culture Culture { get; set; }
 
         public string Transcription { get; set; }
+        
+        public DateTime AdditionDate { get; set; }
 
         public virtual List<WordTranslation> Translations { get; set; }
         public virtual List<EnglishWord> Synonyms { get; set; }
+
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Data.Entity;
+using System.Windows;
 using Vocabulary.Infrastructure.Helpers;
+using Vocabulary.Models.DataAccess;
 using static Vocabulary.Infrastructure.Helpers.InitializationHelper;
 
 namespace Vocabulary
@@ -14,6 +16,7 @@ namespace Vocabulary
             base.OnStartup(e);
             SetDataDirectoryFolder();
             EnsureDataDirectoryExists();
+            Database.SetInitializer(new DefaultIfNotExistDbInitializer());
         }
     }
 }
