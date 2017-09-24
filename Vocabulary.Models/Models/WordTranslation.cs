@@ -10,10 +10,15 @@ namespace Vocabulary.Models.Models
 
         public int IdWord { get; set; }
 
+        public int? IdConsumptionArea { get; set; }
+
         [ForeignKey(nameof(IdWord))]
         public virtual EnglishWord Word { get; set; }
 
         public virtual UsageSample UsageSample { get; set; }
+
+        [ForeignKey(nameof(IdConsumptionArea))]
+        public virtual ConsumptionArea ConsumptionArea { get; set; }
 
         #endregion
 
