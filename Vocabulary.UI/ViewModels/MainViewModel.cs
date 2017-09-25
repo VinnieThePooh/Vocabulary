@@ -1,9 +1,6 @@
-using System;
-using System.Collections.ObjectModel;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using Vocabulary.Models.DataAccess.Interfaces;
-using Vocabulary.Models.Models;
 
 namespace Vocabulary.ViewModels
 {
@@ -27,9 +24,8 @@ namespace Vocabulary.ViewModels
 
         #region Fields
 
-        readonly IEnglishWordRepository wordsRepository;
-
-        private ObservableCollection<EnglishWord> englishWords;
+        
+        private ViewModelBase dynamicViewModel;
 
         #endregion
 
@@ -37,7 +33,6 @@ namespace Vocabulary.ViewModels
 
         public MainViewModel(IEnglishWordRepository repository)
         {
-            wordsRepository = repository ?? throw new ArgumentNullException(nameof(repository));
             ExitCommand = new GalaSoft.MvvmLight.CommandWpf.RelayCommand<Window>(ExitFromApplication);
         }
 
@@ -47,19 +42,16 @@ namespace Vocabulary.ViewModels
 
         #region Properties
 
-        public ObservableCollection<EnglishWord> EnglishWords
-        {
-            get
-            {
-                if (englishWords == null)
-                    englishWords = wordsRepository.GetAllWords();
-                return englishWords;
-            }
 
+        public ViewModelBase DynamicViewModel
+        {
+            get { return dynamicViewModel; }
             set
             {
-                englishWords = value;
-                RaisePropertyChanged(nameof(EnglishWords));
+                if (value == dynamicViewModel)
+                    return;
+                dynamicViewModel = value;
+                RaisePropertyChanged(nameof(DynamicViewModel));
             }
         }
 

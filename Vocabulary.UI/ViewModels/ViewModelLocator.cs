@@ -20,6 +20,7 @@ using Vocabulary.Models.DataAccess;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.DataAccess.Repositories;
 using Vocabulary.ViewModels;
+using Vocabulary.Views;
 
 namespace Vocabulary.ViewModel
 {
@@ -48,19 +49,19 @@ namespace Vocabulary.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<WordsListViewModel>();
+
+
             SimpleIoc.Default.Register<IEnglishWordRepository, DefaultEnglishWordRepository>();
             SimpleIoc.Default.Register(() => new Func<VocabularyContext>(() => new VocabularyContext()));
 
         }
 
-        public MainViewModel MainViewModel
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
-        
+        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
+
+        public WordsListViewModel WordsListViewModel => ServiceLocator.Current.GetInstance<WordsListViewModel>();
+
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
