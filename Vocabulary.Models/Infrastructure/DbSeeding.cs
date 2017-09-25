@@ -15,7 +15,7 @@ namespace Vocabulary.Models.Infrastructure
              if (context == null)
                  throw new ArgumentNullException(nameof(context));
 
-            CorrectSchema(context);
+            CorrectWordsTableSchema(context);
             SeedConsumptionAreas(context);
             TrySeedWordsFromFiles(context);
         }
@@ -23,10 +23,10 @@ namespace Vocabulary.Models.Infrastructure
 
         private static void TrySeedWordsFromFiles(VocabularyContext context)
         {
-            
+                
         }
 
-        private static void CorrectSchema(VocabularyContext context)
+        private static void CorrectWordsTableSchema(VocabularyContext context)
         {
             string constraintName = "dateDF";
             var sql = $"alter table {TableNames.Words} add constraint {constraintName} default getdate() for {nameof(EnglishWord.AdditionDate)}";
@@ -46,8 +46,12 @@ namespace Vocabulary.Models.Infrastructure
         private static IEnumerable<string> GetConsumptionAreas()
         {
             return new[] {"Common speech",
+                          "British slang",
                           "American slang",
-                          "Mathematics"};
+                          "Mathematics",
+                           "Physics",
+                           "Informatics",
+                           "Idioma"};
         }
     }
 }

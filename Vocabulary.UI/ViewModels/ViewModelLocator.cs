@@ -19,6 +19,7 @@ using System;
 using Vocabulary.Models.DataAccess;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.DataAccess.Repositories;
+using Vocabulary.ViewModels;
 
 namespace Vocabulary.ViewModel
 {

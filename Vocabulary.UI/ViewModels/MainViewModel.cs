@@ -1,11 +1,11 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.Models;
-using System.Threading.Tasks;
 
-namespace Vocabulary.ViewModel
+namespace Vocabulary.ViewModels
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -25,7 +25,7 @@ namespace Vocabulary.ViewModel
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
 
-        #region Fields private 
+        #region Fields
 
         readonly IEnglishWordRepository wordsRepository;
 
@@ -33,12 +33,19 @@ namespace Vocabulary.ViewModel
 
         #endregion
 
+        #region Constructor
+
         public MainViewModel(IEnglishWordRepository repository)
         {
             wordsRepository = repository ?? throw new ArgumentNullException(nameof(repository));
-            
+            ExitCommand = new GalaSoft.MvvmLight.CommandWpf.RelayCommand<Window>(ExitFromApplication);
         }
 
+
+
+        #endregion
+
+        #region Properties
 
         public ObservableCollection<EnglishWord> EnglishWords
         {
@@ -55,5 +62,24 @@ namespace Vocabulary.ViewModel
                 RaisePropertyChanged(nameof(EnglishWords));
             }
         }
+
+
+        #region Commands
+
+        public GalaSoft.MvvmLight.CommandWpf.RelayCommand<Window> ExitCommand { get; }
+
+
+        #endregion
+
+        #endregion
+
+        #region Implementation details
+
+        private void ExitFromApplication(Window window) => window?.Close();
+
+        #endregion
     }
 }
+
+        
+    
