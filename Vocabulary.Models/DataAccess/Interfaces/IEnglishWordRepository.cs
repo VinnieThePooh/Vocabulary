@@ -15,5 +15,6 @@ namespace Vocabulary.Models.DataAccess.Interfaces
         ObservableCollection<EnglishWord> GetWordsByFilter(Expression<Func<EnglishWord,bool>> filter);
         EnglishWord GetSingleWordByFilter(Expression<Func<EnglishWord,bool>> filter);
         int AddNewWord(EnglishWord word);
+        void UpdateWord(EnglishWord updatedWord);
     }
 }

@@ -55,10 +55,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Column="1" Background="LightGray">
-            <Button Content="Add new"/>
-            <Button Content="Edit"/>
-            <Button Content="Add synonym"/>
-            <Button Content="Delete"/>
+            <Button Content="Add new" Command="{Binding AddNewWordCommand}"/>
+            <Button Content="Edit" Command="{Binding }"/>
+            <Button Content="Add synonym" Command="{Binding AddSynonymCommand}"/>
+            <Button Content="Delete" Command="{Binding }"/>
         </StackPanel>
     </Grid>
 </UserControl>
