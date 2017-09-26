@@ -12,17 +12,14 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using GalaSoft.MvvmLight;
+using System;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using System;
 using Vocabulary.Models.DataAccess;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.DataAccess.Repositories;
-using Vocabulary.ViewModels;
-using Vocabulary.Views;
 
-namespace Vocabulary.ViewModel
+namespace Vocabulary.ViewModels
 {
     /// <summary>
     /// This class contains static references to all the view models in the

@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Practices.ServiceLocation;
-using Vocabulary.ViewModel;
+using Vocabulary.Infrastructure;
 
 namespace Vocabulary.ViewModels
 {
@@ -30,15 +33,23 @@ namespace Vocabulary.ViewModels
         private ViewModelBase dynamicViewModel;
 
         private ViewModelBase wordsListViewModel;
+        private TabItemModel selectedTabItem;
 
         #endregion
 
         #region Constructor
 
+        //todo: pass literals via resources
         public MainViewModel()
         {
             ExitCommand = new RelayCommand<Window>(ExitFromApplication);
-            ChangeViewModelCommand = new RelayCommand<ViewModelBase>(ChangeViewModel);
+            TabItemsCollection = new ObservableCollection<TabItemModel>(new List<TabItemModel>
+            {
+                new TabItemModel {TabItemTitle = "List", ViewModelType = typeof(WordsListViewModel)},
+                new TabItemModel {TabItemTitle = "TestTabItem", ViewModelType = null},
+                new TabItemModel {TabItemTitle = "TestTabItem2", ViewModelType = null}
+            });
+            SelectedTabItem = TabItemsCollection[0];
         }
 
 
@@ -61,25 +72,29 @@ namespace Vocabulary.ViewModels
         }
 
 
+        public ObservableCollection<TabItemModel> TabItemsCollection { get; }
+         
+        public TabItemModel SelectedTabItem
+        {
+            get => selectedTabItem;
+            set
+            {
+                TabItemModel val = value;
+                if (val?.ViewModelType == null)
+                    return;
+                
+                selectedTabItem = value;
+                var t = (ViewModelBase)ServiceLocator.Current.GetInstance(selectedTabItem.ViewModelType);
+                DynamicViewModel = t;
+                RaisePropertyChanged();
+            }
+        }
+
         #region Commands
 
         public RelayCommand<Window> ExitCommand { get; }
 
-        public RelayCommand<ViewModelBase> ChangeViewModelCommand { get; }
-
-
         #endregion
-
-
-        #region ViewModels
-
-        public ViewModelBase WordsListViewModel => wordsListViewModel ??
-                                                   (wordsListViewModel =
-                                                    ServiceLocator.Current.GetInstance<WordsListViewModel>());
-        
-
-        #endregion
-
 
 
         #endregion
@@ -87,13 +102,6 @@ namespace Vocabulary.ViewModels
         #region Implementation details
 
         private void ExitFromApplication(Window window) => window?.Close();
-
-        private void ChangeViewModel(ViewModelBase newViewModel)
-        {
-            if (newViewModel != null)
-                DynamicViewModel = newViewModel;
-        }
-
 
         #endregion
     }

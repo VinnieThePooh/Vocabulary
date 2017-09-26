@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Infrastructure\Helpers\InitializationHelper.cs" />
+    <Compile Include="Infrastructure\TabItemModel.cs" />
     <Compile Include="ViewModels\EditWordViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
