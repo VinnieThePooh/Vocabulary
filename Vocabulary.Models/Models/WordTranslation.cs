@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Policy;
 
 namespace Vocabulary.Models.Models
 {
@@ -12,6 +13,8 @@ namespace Vocabulary.Models.Models
 
         public int? IdConsumptionArea { get; set; }
 
+        public int? IdPartOfSpeech { get; set; }
+
         [ForeignKey(nameof(IdWord))]
         public virtual EnglishWord Word { get; set; }
 
@@ -19,6 +22,9 @@ namespace Vocabulary.Models.Models
 
         [ForeignKey(nameof(IdConsumptionArea))]
         public virtual ConsumptionArea ConsumptionArea { get; set; }
+
+        [ForeignKey(nameof(IdPartOfSpeech))]
+        public virtual SpeechPart PartOfSpeech { get; set; }
 
         #endregion
 

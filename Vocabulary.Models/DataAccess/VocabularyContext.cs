@@ -21,6 +21,7 @@ namespace Vocabulary.Models.DataAccess
             modelBuilder.Configurations.Add(new WordTranslationConfiguration());
             modelBuilder.Configurations.Add(new UsagesSampleConfiguration());
             modelBuilder.Configurations.Add(new ConsumptionAreaConfiguration());
+            modelBuilder.Configurations.Add(new SpeechPartConfiguration());
         }
     }
 }

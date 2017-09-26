@@ -17,6 +17,7 @@ namespace Vocabulary.Models.Infrastructure
 
             CorrectWordsTableSchema(context);
             SeedConsumptionAreas(context);
+            SeedSpeechOfParts(context);
             TrySeedWordsFromFiles(context);
         }
 
@@ -31,6 +32,20 @@ namespace Vocabulary.Models.Infrastructure
             string constraintName = "dateDF";
             var sql = $"alter table {TableNames.Words} add constraint {constraintName} default getdate() for {nameof(EnglishWord.AdditionDate)}";
             context.Database.ExecuteSqlCommand(TransactionalBehavior.EnsureTransaction, sql);
+        }
+
+        private static void SeedSpeechOfParts(VocabularyContext context)
+        {
+            context.Set<SpeechPart>()
+                .AddOrUpdate(
+                    new SpeechPart {SpeechPartName = SpeechPartNames.Noun},
+                    new SpeechPart {SpeechPartName = SpeechPartNames.Adjective},
+                    new SpeechPart {SpeechPartName = SpeechPartNames.Verb},
+                    new SpeechPart {SpeechPartName = SpeechPartNames.Pronoun },
+                    new SpeechPart {SpeechPartName = SpeechPartNames.Adverb},
+                    new SpeechPart {SpeechPartName = SpeechPartNames.Union},
+                    new SpeechPart {SpeechPartName = SpeechPartNames.Particle},
+                    new SpeechPart {SpeechPartName = SpeechPartNames.Preposition});
         }
 
 

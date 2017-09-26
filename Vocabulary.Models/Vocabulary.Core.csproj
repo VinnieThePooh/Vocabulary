@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataAccess\Configurations\ConsumptionAreaConfiguration.cs" />
     <Compile Include="DataAccess\Configurations\EnglishWordConfiguration.cs" />
+    <Compile Include="DataAccess\Configurations\SpeechPartConfiguration.cs" />
     <Compile Include="DataAccess\Configurations\UsagesSampleConfiguration.cs" />
     <Compile Include="DataAccess\Configurations\WordTranslationConfiguration.cs" />
     <Compile Include="DataAccess\DefaultIfNotExistDbInitializer.cs" />
@@ -58,9 +59,11 @@
     <Compile Include="Infrastructure\Cultures.cs" />
     <Compile Include="Infrastructure\DbSeeding.cs" />
     <Compile Include="Infrastructure\SchemaNames.cs" />
+    <Compile Include="Infrastructure\SpeechPartNames.cs" />
     <Compile Include="Infrastructure\TableNames.cs" />
     <Compile Include="Models\EnglishWord.cs" />
     <Compile Include="Models\ConsumptionArea.cs" />
+    <Compile Include="Models\SpeechPart.cs" />
     <Compile Include="Models\UsageSample.cs" />
     <Compile Include="Models\WordTranslation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
