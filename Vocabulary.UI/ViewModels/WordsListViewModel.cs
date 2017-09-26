@@ -35,7 +35,7 @@ namespace Vocabulary.ViewModels
             set
             {
                 englishWords = value;
-                RaisePropertyChanged(nameof(EnglishWords));
+                RaisePropertyChanged();
             }
         }
 

@@ -7,6 +7,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vocabulary"
+        xmlns:attachedCommandBehavior="clr-namespace:AttachedCommandBehavior;assembly=AttachedCommandBehavior"
         mc:Ignorable="d"
         Title="Main Window" Height="350" Width="525">
        <Window.Resources>
@@ -103,7 +104,10 @@
         </Menu>
         <TabControl MinWidth="150" MaxWidth="360" Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto"
                     Margin="0">
-            <TabItem Margin="0" Header="List">
+            <TabItem Margin="0"
+                     Header="List"
+                     attachedCommandBehavior:CommandBehavior.CommandParameter ="{Binding }"
+                     >
                 <Grid/>
             </TabItem>
             <TabItem Header="Calendar">

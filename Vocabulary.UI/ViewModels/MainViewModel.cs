@@ -1,6 +1,8 @@
 using System.Windows;
 using GalaSoft.MvvmLight;
-using Vocabulary.Models.DataAccess.Interfaces;
+using GalaSoft.MvvmLight.CommandWpf;
+using Microsoft.Practices.ServiceLocation;
+using Vocabulary.ViewModel;
 
 namespace Vocabulary.ViewModels
 {
@@ -27,13 +29,16 @@ namespace Vocabulary.ViewModels
         
         private ViewModelBase dynamicViewModel;
 
+        private ViewModelBase wordsListViewModel;
+
         #endregion
 
         #region Constructor
 
-        public MainViewModel(IEnglishWordRepository repository)
+        public MainViewModel()
         {
-            ExitCommand = new GalaSoft.MvvmLight.CommandWpf.RelayCommand<Window>(ExitFromApplication);
+            ExitCommand = new RelayCommand<Window>(ExitFromApplication);
+            ChangeViewModelCommand = new RelayCommand<ViewModelBase>(ChangeViewModel);
         }
 
 
@@ -45,29 +50,50 @@ namespace Vocabulary.ViewModels
 
         public ViewModelBase DynamicViewModel
         {
-            get { return dynamicViewModel; }
+            get => dynamicViewModel;
             set
             {
                 if (value == dynamicViewModel)
                     return;
                 dynamicViewModel = value;
-                RaisePropertyChanged(nameof(DynamicViewModel));
+                RaisePropertyChanged();
             }
         }
 
 
         #region Commands
 
-        public GalaSoft.MvvmLight.CommandWpf.RelayCommand<Window> ExitCommand { get; }
+        public RelayCommand<Window> ExitCommand { get; }
+
+        public RelayCommand<ViewModelBase> ChangeViewModelCommand { get; }
 
 
         #endregion
+
+
+        #region ViewModels
+
+        public ViewModelBase WordsListViewModel => wordsListViewModel ??
+                                                   (wordsListViewModel =
+                                                    ServiceLocator.Current.GetInstance<WordsListViewModel>());
+        
+
+        #endregion
+
+
 
         #endregion
 
         #region Implementation details
 
         private void ExitFromApplication(Window window) => window?.Close();
+
+        private void ChangeViewModel(ViewModelBase newViewModel)
+        {
+            if (newViewModel != null)
+                DynamicViewModel = newViewModel;
+        }
+
 
         #endregion
     }
