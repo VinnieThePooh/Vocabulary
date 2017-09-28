@@ -47,8 +47,9 @@ namespace Vocabulary.ViewModels
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<WordsListViewModel>();
-
-
+            SimpleIoc.Default.Register<EditWordViewModel>();
+            SimpleIoc.Default.Register<AddNewWordViewModel>();
+            
             SimpleIoc.Default.Register<IEnglishWordRepository, DefaultEnglishWordRepository>();
             SimpleIoc.Default.Register(() => new Func<VocabularyContext>(() => new VocabularyContext()));
 

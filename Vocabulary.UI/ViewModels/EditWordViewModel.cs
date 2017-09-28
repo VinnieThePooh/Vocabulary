@@ -1,7 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using Vocabulary.Infrastructure.Dialogs;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.Models;
 using Vocabulary.Models.Validators;
@@ -16,6 +20,8 @@ namespace Vocabulary.ViewModels
         protected readonly IEnglishWordRepository wordsRepository;
         protected readonly IWordValidator wordValidator;
         private string validationMessage;
+        private EnglishWord currentWord;
+        private EnglishWord originWord;
 
         #endregion
 
@@ -26,16 +32,28 @@ namespace Vocabulary.ViewModels
             wordValidator = validator ?? throw new ArgumentNullException(nameof(wordValidator));
             CurrentWord = currentWord ?? throw new ArgumentNullException(nameof(currentWord));
             wordsRepository = wordsRepository ?? throw new ArgumentNullException(nameof(wordsRepository));
+            originWord = CloneWord(currentWord);
             SaveChangesCommand = new RelayCommand<EnglishWord>(SaveChanges);
+            CancelChangesCommand = new RelayCommand(CancelChanges);
         }
 
         #endregion
 
         #region Properties
 
-        public EnglishWord CurrentWord { get; set; }
+        public EnglishWord CurrentWord      
+        {
+            get { return currentWord; }
+            set
+            {
+                currentWord = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public RelayCommand<EnglishWord> SaveChangesCommand { get; set; }
+
+        public RelayCommand CancelChangesCommand { get; set; }
 
         public string ValidationMessage
         {
@@ -49,9 +67,9 @@ namespace Vocabulary.ViewModels
 
         #endregion
 
-        #region Interface
+        #region Implementation details
 
-        public void SaveChanges(EnglishWord updatedWord)
+        private void SaveChanges(EnglishWord updatedWord)
         {
             if (!Validate(updatedWord))
             {
@@ -60,11 +78,25 @@ namespace Vocabulary.ViewModels
                 return;
             }
             SaveChangesInternal(updatedWord);
+            Messenger.Default.Send(new DialogResultOkMessage());
         }
 
-        #endregion
+        private void CancelChanges()
+        {
+            CurrentWord = originWord;
+            Messenger.Default.Send(new DialogResultCancelMessage());
+        }
 
-        #region Implementation details
+        private EnglishWord CloneWord(EnglishWord word)
+        {
+            using (var stream = new MemoryStream())
+            {
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(stream, word);
+                stream.Position = 0;
+                return (EnglishWord) formatter.Deserialize(stream);
+            }
+        }
 
         protected virtual bool Validate(EnglishWord updatedWord)
         {

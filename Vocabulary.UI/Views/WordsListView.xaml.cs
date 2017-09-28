@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using GalaSoft.MvvmLight.Messaging;
+using Vocabulary.Infrastructure.Dialogs;
 
 namespace Vocabulary.Views
 {
@@ -20,9 +9,27 @@ namespace Vocabulary.Views
     /// </summary>
     public partial class WordsListView : UserControl
     {
+        private DialogContainerView dialogContainerView;
+
         public WordsListView()
         {
             InitializeComponent();
+            Loaded += (s, e) =>
+            {
+                dialogContainerView = new DialogContainerView();
+            };
+
+            Messenger.Default.Register<ShowUserControlMessage>(this, m => dialogContainerView.ShowDialog());
+            Messenger.Default.Register<DialogResultOkMessage>(this, m =>
+            {
+                dialogContainerView.Hide();
+                //dialogContainerView = null;
+            });
+            Messenger.Default.Register<DialogResultOkMessage>(this, m =>
+            {
+                dialogContainerView.Hide();
+                //dialogContainerView = null;
+            });
         }
     }
 }

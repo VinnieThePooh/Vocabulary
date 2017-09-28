@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using Vocabulary.Infrastructure.Dialogs;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.Models;
 
@@ -49,7 +49,6 @@ namespace Vocabulary.ViewModels
             set
             {
                 currentWord = value;
-                CommandManager.InvalidateRequerySuggested();
 
                 // wtf? never did something like this
                 AddSynonymCommand.RaiseCanExecuteChanged();
@@ -68,21 +67,22 @@ namespace Vocabulary.ViewModels
 
         private void AddNewWord()
         {
-            
+            Messenger.Default.Send(new ShowAddWordViewModel());
+            var result = 0;
         }
 
 
-        private void EditWord(EnglishWord currentWord)
+        private void EditWord(EnglishWord word)
         {
-            
+            Messenger.Default.Send(new ShowEditWordViewModel());
         }
 
-        private void AddSynonym(EnglishWord currentWord)
+        private void AddSynonym(EnglishWord word)
         {
-
+             
         }
 
-        private void DeleteWord(EnglishWord currentWord)
+        private void DeleteWord(EnglishWord word)
         {
             
         }

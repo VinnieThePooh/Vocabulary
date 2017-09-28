@@ -79,15 +79,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Infrastructure\Dialogs\Messages.cs" />
     <Compile Include="Infrastructure\Helpers\InitializationHelper.cs" />
     <Compile Include="Infrastructure\TabItemModel.cs" />
     <Compile Include="ViewModels\AddNewWordViewModel.cs" />
+    <Compile Include="ViewModels\DialogContainerViewModel.cs" />
     <Compile Include="ViewModels\EditWordViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\AddNewWordView.xaml.cs">
+      <DependentUpon>AddNewWordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogContainerView.xaml.cs">
+      <DependentUpon>DialogContainerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditWordView.xaml.cs">
+      <DependentUpon>EditWordView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WordsListView.xaml.cs">
       <DependentUpon>WordsListView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddNewWordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogContainerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditWordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
