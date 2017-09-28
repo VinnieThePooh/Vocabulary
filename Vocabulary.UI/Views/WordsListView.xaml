@@ -23,6 +23,7 @@
             <ColumnDefinition Width="10px"/>
         </Grid.ColumnDefinitions>
         <DataGrid ItemsSource="{Binding Path=EnglishWords}"
+                  SelectedItem="{Binding Path=CurrentWord, Mode = TwoWay}"
                   SelectionMode="Single"
                   AutoGenerateColumns="False"
                   CanUserResizeRows="False"
@@ -54,11 +55,11 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Column="1" Background="LightGray">
-            <Button Content="Add new" Command="{Binding AddNewWordCommand}"/>
-            <Button Content="Edit" Command="{Binding }"/>
-            <Button Content="Add synonym" Command="{Binding AddSynonymCommand}"/>
-            <Button Content="Delete" Command="{Binding }"/>
+        <StackPanel Grid.Row="0" Grid.Column="1" Background="LightGray">
+            <Button Content="Add new" Command="{Binding AddNewWordCommand}" CommandParameter="{Binding CurrentWord, Mode=TwoWay}"/>
+            <Button Content="Edit" Command="{Binding EditWordCommand}" CommandParameter="{Binding CurrentWord, Mode=TwoWay}"/>
+            <Button Content="Add synonym" Command="{Binding AddSynonymCommand}" CommandParameter="{Binding CurrentWord, Mode=TwoWay}"/>
+            <Button Content="Delete" Command="{Binding DeleteWordCommand}" CommandParameter="{Binding CurrentWord, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
 </UserControl>
