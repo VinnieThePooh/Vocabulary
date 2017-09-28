@@ -11,8 +11,8 @@ namespace Vocabulary.ViewModels
 
         public DialogContainerViewModel()
         {
-            MessengerInstance.Register<ShowEditWordViewModel>(this, m => CurrentContent = ServiceLocator.Current.GetInstance<EditWordViewModel>());
-            MessengerInstance.Register<ShowAddWordViewModel>(this, m => CurrentContent = ServiceLocator.Current.GetInstance<AddNewWordViewModel>());
+            Messenger.Default.Register<ShowEditWordViewModel>(this, m => CurrentContent = ViewModelLocator.EditWordViewModel);
+            Messenger.Default.Register<ShowAddWordViewModel>(this, m => CurrentContent = ViewModelLocator.AddNewWordViewModel);
         }
 
         public ViewModelBase CurrentContent

@@ -55,14 +55,22 @@ namespace Vocabulary.ViewModels
 
         }
 
-        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public static MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
 
-        public WordsListViewModel WordsListViewModel => ServiceLocator.Current.GetInstance<WordsListViewModel>();
+        public static WordsListViewModel WordsListViewModel => ServiceLocator.Current.GetInstance<WordsListViewModel>();
+
+        public static AddNewWordViewModel AddNewWordViewModel => ServiceLocator.Current.GetInstance<AddNewWordViewModel>();
+
+        public static EditWordViewModel EditWordViewModel => ServiceLocator.Current.GetInstance<EditWordViewModel>();
+
 
 
         public static void Cleanup()
         {
-            // TODO Clear the ViewModels
+            EditWordViewModel?.Cleanup();
+            MainViewModel?.Cleanup();
+            AddNewWordViewModel?.Cleanup();
+            WordsListViewModel?.Cleanup();
         }
     }
 }
