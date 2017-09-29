@@ -27,10 +27,9 @@ namespace Vocabulary.ViewModels
 
         #region Constructors
 
-        public EditWordViewModel(IEnglishWordRepository wordsRepository, EnglishWord currentWord, IWordValidator validator)
+        public EditWordViewModel(IEnglishWordRepository wordsRepository, IWordValidator validator)
         {
             wordValidator = validator ?? throw new ArgumentNullException(nameof(wordValidator));
-            CurrentWord = currentWord ?? throw new ArgumentNullException(nameof(currentWord));
             wordsRepository = wordsRepository ?? throw new ArgumentNullException(nameof(wordsRepository));
             originWord = CloneWord(currentWord);
             SaveChangesCommand = new RelayCommand<EnglishWord>(SaveChanges);
@@ -89,6 +88,9 @@ namespace Vocabulary.ViewModels
 
         private EnglishWord CloneWord(EnglishWord word)
         {
+            if (word == null)
+                return null;
+
             using (var stream = new MemoryStream())
             {
                 var formatter = new BinaryFormatter();

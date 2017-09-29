@@ -18,6 +18,7 @@ using Microsoft.Practices.ServiceLocation;
 using Vocabulary.Models.DataAccess;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.DataAccess.Repositories;
+using Vocabulary.Models.Validators;
 
 namespace Vocabulary.ViewModels
 {
@@ -49,8 +50,10 @@ namespace Vocabulary.ViewModels
             SimpleIoc.Default.Register<WordsListViewModel>();
             SimpleIoc.Default.Register<EditWordViewModel>();
             SimpleIoc.Default.Register<AddNewWordViewModel>();
+            SimpleIoc.Default.Register<DialogContainerViewModel>();
             
             SimpleIoc.Default.Register<IEnglishWordRepository, DefaultEnglishWordRepository>();
+            SimpleIoc.Default.Register<IWordValidator,DefaultWordValidator>();
             SimpleIoc.Default.Register(() => new Func<VocabularyContext>(() => new VocabularyContext()));
 
         }

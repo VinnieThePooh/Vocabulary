@@ -14,6 +14,7 @@ namespace Vocabulary.ViewModels
         readonly IEnglishWordRepository wordsRepository;
 
         private ObservableCollection<EnglishWord> englishWords;
+        DialogContainerViewModel container = new DialogContainerViewModel();
         private EnglishWord currentWord;
 
 
@@ -67,14 +68,14 @@ namespace Vocabulary.ViewModels
 
         private void AddNewWord()
         {
-            Messenger.Default.Send(new ShowAddWordViewModel());
-            var result = 0;
+            Messenger.Default.Send(new ShowAddWordViewModel(new EnglishWord(), "Add new"));
         }
 
 
+        // todo: refactor
         private void EditWord(EnglishWord word)
         {
-            Messenger.Default.Send(new ShowEditWordViewModel());
+            Messenger.Default.Send(new ShowEditWordViewModel(CurrentWord, "Edit word"));
         }
 
         private void AddSynonym(EnglishWord word)

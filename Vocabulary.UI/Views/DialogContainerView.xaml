@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Vocabulary.ViewModels"
         xmlns:local="clr-namespace:Vocabulary.Views"
         mc:Ignorable="d"
-        Title="DialogContainerView" Height="300" Width="300">
+        Title="{Binding DialogTitle, Mode= OneTime}" Height="300" Width="300">
     <Grid>
         <ContentPresenter Content="{Binding Path=CurrentContent}" />
     </Grid>

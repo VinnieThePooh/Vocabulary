@@ -6,7 +6,36 @@
              xmlns:local="clr-namespace:Vocabulary.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Width" Value="70"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="0,0,-140,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Text"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=CurrentWord.Text, Mode=TwoWay}"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Culture"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentWord.Culture, Mode=TwoWay}"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Transcription"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=CurrentWord.Transcription, Mode=TwoWay}"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+            <Button Content="Cancel" Command="{Binding CancelChangesCommand}"/>
+            <Button Content="OK" Command="{Binding SaveChangesCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

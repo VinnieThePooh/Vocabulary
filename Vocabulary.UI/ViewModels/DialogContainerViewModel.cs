@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 using Vocabulary.Infrastructure.Dialogs;
@@ -11,9 +12,21 @@ namespace Vocabulary.ViewModels
 
         public DialogContainerViewModel()
         {
-            Messenger.Default.Register<ShowEditWordViewModel>(this, m => CurrentContent = ViewModelLocator.EditWordViewModel);
-            Messenger.Default.Register<ShowAddWordViewModel>(this, m => CurrentContent = ViewModelLocator.AddNewWordViewModel);
+            Messenger.Default.Register<ShowEditWordViewModel>(this, m =>
+            {
+                CurrentContent = ViewModelLocator.EditWordViewModel;
+                DialogTitle = m.WindowTitle;
+                ((EditWordViewModel)CurrentContent).CurrentWord = m.CurrentWord;
+            });
+            Messenger.Default.Register<ShowAddWordViewModel>(this, m =>
+            {
+                CurrentContent = ViewModelLocator.AddNewWordViewModel;
+                DialogTitle = m.WindowTitle;
+                ((AddNewWordViewModel)CurrentContent).CurrentWord = m.CurrentWord;
+            });
         }
+
+        public string DialogTitle { get; set; }
 
         public ViewModelBase CurrentContent
         {
