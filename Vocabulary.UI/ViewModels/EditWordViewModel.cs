@@ -31,7 +31,6 @@ namespace Vocabulary.ViewModels
         {
             wordValidator = validator ?? throw new ArgumentNullException(nameof(wordValidator));
             wordsRepository = wordsRepository ?? throw new ArgumentNullException(nameof(wordsRepository));
-            originWord = CloneWord(currentWord);
             SaveChangesCommand = new RelayCommand<EnglishWord>(SaveChanges);
             CancelChangesCommand = new RelayCommand(CancelChanges);
         }
@@ -42,7 +41,7 @@ namespace Vocabulary.ViewModels
 
         public EnglishWord CurrentWord      
         {
-            get { return currentWord; }
+            get => currentWord;
             set
             {
                 currentWord = value;
@@ -62,6 +61,17 @@ namespace Vocabulary.ViewModels
                 validationMessage = value;
                 RaisePropertyChanged();
             }
+        }
+
+        #endregion
+
+
+        #region Interface
+
+        public void SaveOrigin(EnglishWord word)
+        {
+            if (word == null) throw new ArgumentNullException(nameof(word));
+            originWord = CloneWord(word);
         }
 
         #endregion

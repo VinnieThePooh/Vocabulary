@@ -16,6 +16,8 @@ namespace Vocabulary.ViewModels
             {
                 CurrentContent = ViewModelLocator.EditWordViewModel;
                 DialogTitle = m.WindowTitle;
+                var editVm = ((EditWordViewModel) CurrentContent);
+                editVm.SaveOrigin(m.CurrentWord);
                 ((EditWordViewModel)CurrentContent).CurrentWord = m.CurrentWord;
             });
             Messenger.Default.Register<ShowAddWordViewModel>(this, m =>
