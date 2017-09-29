@@ -9,20 +9,12 @@
         xmlns:viewModels="clr-namespace:Vocabulary.ViewModels"
         xmlns:views="clr-namespace:Vocabulary.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Vocabulary"
-        xmlns:attachedCommandBehavior="clr-namespace:AttachedCommandBehavior;assembly=AttachedCommandBehavior"
         mc:Ignorable="d"
         Title="Main Window" Height="350" Width="525"> 
        <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:WordsListViewModel}">
                <views:WordsListView />
-           </DataTemplate>
-           <DataTemplate DataType="{x:Type viewModels:AddNewWordViewModel}">
-               <views:EditWordView />
-           </DataTemplate>
-           <DataTemplate DataType="{x:Type viewModels:EditWordViewModel}">
-               <views:EditWordView />
-           </DataTemplate>
+         </DataTemplate>
         <Style TargetType="{x:Type TabControl}">
             <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="Margin" Value="0"/>

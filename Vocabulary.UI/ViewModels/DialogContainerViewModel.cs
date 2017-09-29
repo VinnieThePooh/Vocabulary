@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Linq;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Vocabulary.Infrastructure.Dialogs;
@@ -12,22 +13,7 @@ namespace Vocabulary.ViewModels
 
         public DialogContainerViewModel()
         {
-            Messenger.Default.Register<ShowEditWordViewModel>(this, m =>
-            {
-                DialogTitle = m.WindowTitle;
-                CurrentContent = ViewModelLocator.EditWordViewModel;
-                var editVm = (EditWordViewModel) CurrentContent;
-                editVm.SaveOrigin(m.CurrentWord);
-                editVm.CurrentWord = m.CurrentWord;
-            });
-            Messenger.Default.Register<ShowAddWordViewModel>(this, m =>
-            {
-                DialogTitle = m.WindowTitle;
-                var content = ViewModelLocator.AddNewWordViewModel;
-                content.CurrentWord = m.CurrentWord;
-                CurrentContent = content;
-            });
-
+            RegisterToMessages();   
             DialogResultOkCommand = new RelayCommand(MakeDialogToBeOk);
             DialogResultCancelCommand = new RelayCommand(MakeDialogToBeCancel);
         }
@@ -55,6 +41,28 @@ namespace Vocabulary.ViewModels
 
 
         #region Implementation details
+
+        private void RegisterToMessages()
+        {
+            Messenger.Default.Register<ShowEditWordViewModel>(this, m =>
+            {
+                DialogTitle = m.WindowTitle;
+                CurrentContent = ViewModelLocator.EditWordViewModel;
+                var editVm = (EditWordViewModel)CurrentContent;
+                editVm.SaveOrigin(m.CurrentWord);
+                editVm.CurrentWord = m.CurrentWord;
+                editVm.SelectedCulture =
+                    editVm.Cultures.SingleOrDefault(c => c.ValueMember.Equals(m.CurrentWord?.Culture)) ??
+                    editVm.Cultures.First();
+            });
+            Messenger.Default.Register<ShowAddWordViewModel>(this, m =>
+            {
+                DialogTitle = m.WindowTitle;
+                var content = ViewModelLocator.AddNewWordViewModel;
+                content.CurrentWord = m.CurrentWord;
+                CurrentContent = content;
+            });
+        }
 
         private void MakeDialogToBeOk()
         {

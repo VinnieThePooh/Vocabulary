@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AttachedCommandBehavior, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AttachedCommandBehavior.2.0.0.0\lib\net35\AttachedCommandBehavior.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -79,6 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Infrastructure\ComboBoxItem.cs" />
     <Compile Include="Infrastructure\Dialogs\Messages.cs" />
     <Compile Include="Infrastructure\Helpers\InitializationHelper.cs" />
     <Compile Include="Infrastructure\TabItemModel.cs" />
@@ -88,9 +86,6 @@
     <Compile Include="ViewModels\Abstract\NotifiableViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\AddNewWordView.xaml.cs">
-      <DependentUpon>AddNewWordView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DialogContainerView.xaml.cs">
       <DependentUpon>DialogContainerView.xaml</DependentUpon>
     </Compile>
@@ -100,10 +95,6 @@
     <Compile Include="Views\WordsListView.xaml.cs">
       <DependentUpon>WordsListView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\AddNewWordView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\DialogContainerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -10,14 +10,14 @@ namespace Vocabulary.ViewModels
     {
         
         public AddNewWordViewModel(IEnglishWordRepository wordsRepository, IWordValidator validator,
-            EnglishWord englishWord) : base(wordsRepository, validator)
+            EnglishWord englishWord) : base(validator)
         {
             CurrentWord = englishWord ?? throw new ArgumentNullException(nameof(englishWord));
         }
 
         [PreferredConstructor]
         public AddNewWordViewModel(IEnglishWordRepository wordsRepository, IWordValidator validator):
-            base(wordsRepository, validator)
+            base(validator)
         {
         }
 

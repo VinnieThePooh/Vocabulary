@@ -9,6 +9,7 @@ namespace Vocabulary.Models.DataAccess
         public VocabularyContext():base("VocabularyContext")
         {
             Words = Set<EnglishWord>();
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<EnglishWord> Words { get; set; }

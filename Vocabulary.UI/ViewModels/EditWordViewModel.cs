@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using Vocabulary.Models.DataAccess.Interfaces;
+using Vocabulary.Models.Infrastructure;
 using Vocabulary.Models.Models;
 using Vocabulary.Models.Validators;
 using Vocabulary.ViewModels.Abstract;
+using ComboBoxItem = Vocabulary.Infrastructure.ComboBoxItem;
 
 namespace Vocabulary.ViewModels
 {
@@ -19,15 +22,29 @@ namespace Vocabulary.ViewModels
         private string validationMessage;
         private EnglishWord currentWord;
         private EnglishWord originWord;
+        private Infrastructure.ComboBoxItem selectedCultureValue;
 
         #endregion
 
         #region Constructors
 
-        public EditWordViewModel(IEnglishWordRepository wordsRepository, IWordValidator validator)
+        public EditWordViewModel(IWordValidator validator)
         {
             wordValidator = validator ?? throw new ArgumentNullException(nameof(wordValidator));
-            wordsRepository = wordsRepository ?? throw new ArgumentNullException(nameof(wordsRepository));
+            Cultures = GetCultures();
+        }
+
+        private IEnumerable<ComboBoxItem> GetCultures()
+        {
+            foreach (var culture in Enum.GetValues(typeof(Culture)))
+            {
+                var item = new Infrastructure.ComboBoxItem()
+                {
+                    ValueMember = (int) culture,
+                    DisplayMember = Enum.GetName(typeof(Culture), culture)
+                };
+                yield return item;
+            }
         }
 
         #endregion
@@ -43,6 +60,18 @@ namespace Vocabulary.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public ComboBoxItem SelectedCulture
+        {
+            get => selectedCultureValue;
+            set
+            {
+                selectedCultureValue = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public IEnumerable<Infrastructure.ComboBoxItem> Cultures { get;}
 
         public string ValidationMessage
         {
@@ -89,7 +118,7 @@ namespace Vocabulary.ViewModels
         }
 
         private EnglishWord CloneWord(EnglishWord word)
-        {
+        {   
             if (word == null)
                 return null;
 

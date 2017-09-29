@@ -6,8 +6,16 @@
         xmlns:viewModels="clr-namespace:Vocabulary.ViewModels"
         xmlns:local="clr-namespace:Vocabulary.Views"
         mc:Ignorable="d"
-        Title="{Binding DialogTitle, Mode= OneTime}" Height="300" Width="300">
+        Width="600"
+        Height="310"
+        Title="{Binding DialogTitle, Mode= OneTime}">
     <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:EditWordViewModel}">
+            <local:EditWordView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:AddNewWordViewModel}">
+            <local:EditWordView />
+        </DataTemplate>
         <Style TargetType="Button">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="70"/>
@@ -24,10 +32,16 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ContentPresenter Content="{Binding Path=CurrentContent}" />
-        <DockPanel  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
-            <Button DockPanel.Dock="Right" Content="OK" Command="{Binding DialogResultOkCommand}"/>
-            <Button DockPanel.Dock="Right" Content="Cancel" Command="{Binding DialogResultCancelCommand}"/>
-        </DockPanel>
+        <ContentPresenter Grid.ColumnSpan="3" Content="{Binding Path=CurrentContent}" />
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Column="1" Width="160">
+                <Button HorizontalAlignment="Right" DockPanel.Dock="Right" Content="OK" Command="{Binding DialogResultOkCommand}"/>
+                <Button HorizontalAlignment="Right" DockPanel.Dock="Right" Content="Cancel" Command="{Binding DialogResultCancelCommand}"/>
+            </DockPanel>
+        </Grid>
     </Grid>
 </Window>

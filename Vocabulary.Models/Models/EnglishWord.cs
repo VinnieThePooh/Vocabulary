@@ -4,6 +4,7 @@ using Vocabulary.Models.Infrastructure;
 
 namespace Vocabulary.Models.Models
 {
+   [Serializable]
    public class EnglishWord
     {
         public EnglishWord()

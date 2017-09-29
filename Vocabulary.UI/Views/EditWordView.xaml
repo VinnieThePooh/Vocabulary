@@ -4,34 +4,60 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Vocabulary.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             Width="600"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <Style TargetType="Button">
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="5,2,2,2"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Margin" Value="3"/>
-            <Setter Property="Width" Value="70"/>
+            <Setter Property="Width" Value="150"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="150"/>
         </Style>
     </UserControl.Resources>
     <Grid Margin="0,0,-140,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Text"/>
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=CurrentWord.Text, Mode=TwoWay}"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Culture"/>
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentWord.Culture, Mode=TwoWay}"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="Transcription"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=CurrentWord.Transcription, Mode=TwoWay}"/>
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label Content="Text"/>
+            <TextBox HorizontalAlignment="Left" DockPanel.Dock="Right" Text="{Binding Path=CurrentWord.Text, Mode=TwoWay}"/>
+        </DockPanel>
+        <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label HorizontalAlignment="Center" Content="Culture"/>
+            <ComboBox ItemsSource="{Binding Cultures}" 
+                      DisplayMemberPath="DisplayMember" 
+                      SelectedValuePath="ValueMember" 
+                      SelectedItem="{Binding SelectedCulture, Mode=TwoWay}"></ComboBox>
+            </DockPanel>
+       <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+           <Label Content="Transcription"/>
+           <TextBox Text="{Binding Path=CurrentWord.Transcription, Mode=TwoWay}"/>
+        </DockPanel>
     </Grid>
 </UserControl>

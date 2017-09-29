@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Policy;
 
 namespace Vocabulary.Models.Models
 {
+    [Serializable]
    public class WordTranslation
     {
         #region EF related
