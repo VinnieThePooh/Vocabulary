@@ -33,9 +33,5 @@
         <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=CurrentWord.Culture, Mode=TwoWay}"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Transcription"/>
         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=CurrentWord.Transcription, Mode=TwoWay}"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
-            <Button Content="Cancel" Command="{Binding CancelChangesCommand}"/>
-            <Button Content="OK" Command="{Binding SaveChangesCommand}"/>
-        </StackPanel>
     </Grid>
 </UserControl>

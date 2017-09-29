@@ -2,6 +2,7 @@
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 using Vocabulary.Infrastructure.Dialogs;
+using Vocabulary.ViewModels;
 
 namespace Vocabulary.Views
 {
@@ -13,6 +14,7 @@ namespace Vocabulary.Views
         public DialogContainerView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.DialogContainerViewModel;
             Closing += (s, e) =>
             {
                 e.Cancel = true;

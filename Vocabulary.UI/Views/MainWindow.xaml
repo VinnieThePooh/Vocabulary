@@ -14,18 +14,14 @@
         mc:Ignorable="d"
         Title="Main Window" Height="350" Width="525"> 
        <Window.Resources>
-          <!-- todo: transfer resources to app.xaml -->
         <DataTemplate DataType="{x:Type viewModels:WordsListViewModel}">
                <views:WordsListView />
            </DataTemplate>
            <DataTemplate DataType="{x:Type viewModels:AddNewWordViewModel}">
                <views:EditWordView />
            </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:EditWordViewModel}">
-            <views:EditWordView />
-        </DataTemplate>
-           <DataTemplate DataType="{x:Type viewModels:DialogContainerViewModel}">
-               <views:DialogContainerView />
+           <DataTemplate DataType="{x:Type viewModels:EditWordViewModel}">
+               <views:EditWordView />
            </DataTemplate>
         <Style TargetType="{x:Type TabControl}">
             <Setter Property="BorderThickness" Value="3"/>

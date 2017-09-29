@@ -25,7 +25,7 @@ namespace Vocabulary.Views
                 dialogContainerView.Hide();
                 //dialogContainerView = null;
             });
-            Messenger.Default.Register<DialogResultOkMessage>(this, m =>
+            Messenger.Default.Register<DialogResultCancelMessage>(this, m =>
             {
                 dialogContainerView.Hide();
                 //dialogContainerView = null;

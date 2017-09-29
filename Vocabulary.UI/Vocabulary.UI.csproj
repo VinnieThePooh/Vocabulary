@@ -85,6 +85,7 @@
     <Compile Include="ViewModels\AddNewWordViewModel.cs" />
     <Compile Include="ViewModels\DialogContainerViewModel.cs" />
     <Compile Include="ViewModels\EditWordViewModel.cs" />
+    <Compile Include="ViewModels\NotifiableViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AddNewWordView.xaml.cs">

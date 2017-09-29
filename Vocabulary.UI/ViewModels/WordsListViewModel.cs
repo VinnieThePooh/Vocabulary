@@ -14,7 +14,6 @@ namespace Vocabulary.ViewModels
         readonly IEnglishWordRepository wordsRepository;
 
         private ObservableCollection<EnglishWord> englishWords;
-        DialogContainerViewModel container = new DialogContainerViewModel();
         private EnglishWord currentWord;
 
 

@@ -66,6 +66,8 @@ namespace Vocabulary.ViewModels
 
         public static EditWordViewModel EditWordViewModel => ServiceLocator.Current.GetInstance<EditWordViewModel>();
 
+        public static DialogContainerViewModel DialogContainerViewModel => ServiceLocator.Current.GetInstance<DialogContainerViewModel>();
+
 
 
         public static void Cleanup()

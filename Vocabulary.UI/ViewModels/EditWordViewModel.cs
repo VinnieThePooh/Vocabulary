@@ -2,10 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Infrastructure.Dialogs;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.Models;
 using Vocabulary.Models.Validators;
@@ -13,7 +9,7 @@ using Vocabulary.Models.Validators;
 namespace Vocabulary.ViewModels
 {
     // must be as abstract base class actually
-   public class EditWordViewModel: ViewModelBase
+   public class EditWordViewModel: NotifiableViewModelBase
     {
         #region Fields
 
@@ -31,15 +27,13 @@ namespace Vocabulary.ViewModels
         {
             wordValidator = validator ?? throw new ArgumentNullException(nameof(wordValidator));
             wordsRepository = wordsRepository ?? throw new ArgumentNullException(nameof(wordsRepository));
-            SaveChangesCommand = new RelayCommand<EnglishWord>(SaveChanges);
-            CancelChangesCommand = new RelayCommand(CancelChanges);
         }
 
         #endregion
 
         #region Properties
 
-        public EnglishWord CurrentWord      
+        public EnglishWord CurrentWord
         {
             get => currentWord;
             set
@@ -48,10 +42,6 @@ namespace Vocabulary.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        public RelayCommand<EnglishWord> SaveChangesCommand { get; set; }
-
-        public RelayCommand CancelChangesCommand { get; set; }
 
         public string ValidationMessage
         {
@@ -65,7 +55,6 @@ namespace Vocabulary.ViewModels
 
         #endregion
 
-
         #region Interface
 
         public void SaveOrigin(EnglishWord word)
@@ -73,6 +62,10 @@ namespace Vocabulary.ViewModels
             if (word == null) throw new ArgumentNullException(nameof(word));
             originWord = CloneWord(word);
         }
+
+        public override void HandleDialogResultOk() => SaveChanges(CurrentWord);
+
+        public override void HandleDialogResultCancel() => CancelChanges();
 
         #endregion
 
@@ -87,13 +80,11 @@ namespace Vocabulary.ViewModels
                 return;
             }
             SaveChangesInternal(updatedWord);
-            Messenger.Default.Send(new DialogResultOkMessage());
         }
 
         private void CancelChanges()
         {
             CurrentWord = originWord;
-            Messenger.Default.Send(new DialogResultCancelMessage());
         }
 
         private EnglishWord CloneWord(EnglishWord word)
