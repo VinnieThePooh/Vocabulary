@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Vocabulary.Infrastructure.Dialogs;
+using Vocabulary.ViewModels.Abstract;
 
 namespace Vocabulary.ViewModels
 {

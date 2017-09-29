@@ -14,6 +14,7 @@ namespace Vocabulary.Views
         public WordsListView()
         {
             InitializeComponent();
+            
             Loaded += (s, e) =>
             {
                 dialogContainerView = new DialogContainerView();

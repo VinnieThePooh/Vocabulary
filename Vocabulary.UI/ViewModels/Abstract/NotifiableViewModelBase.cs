@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace Vocabulary.ViewModels
+namespace Vocabulary.ViewModels.Abstract
 {
     public abstract class NotifiableViewModelBase: ViewModelBase
     {

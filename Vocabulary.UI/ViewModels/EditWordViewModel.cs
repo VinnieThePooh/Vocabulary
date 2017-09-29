@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.Models;
 using Vocabulary.Models.Validators;
+using Vocabulary.ViewModels.Abstract;
 
 namespace Vocabulary.ViewModels
 {

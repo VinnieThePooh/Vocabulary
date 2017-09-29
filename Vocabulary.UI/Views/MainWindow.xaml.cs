@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Vocabulary.Models.DataAccess;
+using Vocabulary.ViewModels;
 
 namespace Vocabulary
 {
@@ -11,6 +12,11 @@ namespace Vocabulary
         public MainWindow()
         {
             InitializeComponent();
+            Closing += (s, e) =>
+            {
+                ViewModelLocator.Cleanup();
+            };
+
             var context = new VocabularyContext();
             context.Database.Initialize(false);
         }
