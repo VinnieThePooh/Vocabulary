@@ -20,16 +20,17 @@ namespace Vocabulary.Views
                 dialogContainerView = new DialogContainerView();
             };
 
-            Messenger.Default.Register<ShowUserControlMessage>(this, m => dialogContainerView.ShowDialog());
+            Messenger.Default.Register<ShowUserControlMessage>(this, m =>
+            {
+                dialogContainerView.ShowDialog();
+            });
             Messenger.Default.Register<DialogResultOkMessage>(this, m =>
             {
                 dialogContainerView.Hide();
-                //dialogContainerView = null;
             });
             Messenger.Default.Register<DialogResultCancelMessage>(this, m =>
             {
                 dialogContainerView.Hide();
-                //dialogContainerView = null;
             });
         }
     }

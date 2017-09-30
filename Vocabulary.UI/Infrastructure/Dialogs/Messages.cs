@@ -1,5 +1,4 @@
 ﻿using System;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Vocabulary.Models.Models;
 
@@ -13,10 +12,9 @@ namespace Vocabulary.Infrastructure.Dialogs
 
     public class DialogResultCancelMessage: HideUserControlMessage { }
 
-    // todo: refactor, wtf is this? messaging system
-    public class ShowEditWordViewModel : MessageBase
+    public class ShowEditWordViewModelMessage : MessageBase
     {
-        public ShowEditWordViewModel(EnglishWord word, string windowTitle)
+        public ShowEditWordViewModelMessage(EnglishWord word, string windowTitle)
         {
             if (string.IsNullOrEmpty(windowTitle)) throw new ArgumentNullException(nameof(windowTitle));
             WindowTitle = windowTitle;
@@ -27,9 +25,9 @@ namespace Vocabulary.Infrastructure.Dialogs
         public string WindowTitle { get; }
     }
 
-    public class ShowAddWordViewModel : ShowEditWordViewModel
+    public class ShowAddWordViewModelMessage : ShowEditWordViewModelMessage
     {
-        public ShowAddWordViewModel(EnglishWord word, string windowTitle):base(word, windowTitle)
+        public ShowAddWordViewModelMessage(EnglishWord word, string windowTitle):base(word, windowTitle)
         {
             
         }

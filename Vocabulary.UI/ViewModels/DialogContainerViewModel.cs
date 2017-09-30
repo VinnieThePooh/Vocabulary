@@ -10,6 +10,7 @@ namespace Vocabulary.ViewModels
    public class DialogContainerViewModel: ViewModelBase
     {
         private NotifiableViewModelBase currentContent;
+        private string dialogTitle;
 
         public DialogContainerViewModel()
         {
@@ -22,7 +23,15 @@ namespace Vocabulary.ViewModels
 
         public RelayCommand DialogResultCancelCommand { get; }
 
-        public string DialogTitle { get; set; }
+        public string DialogTitle
+        {
+            get => dialogTitle;
+            set
+            {
+                dialogTitle = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public NotifiableViewModelBase CurrentContent
         {
@@ -44,18 +53,15 @@ namespace Vocabulary.ViewModels
 
         private void RegisterToMessages()
         {
-            Messenger.Default.Register<ShowEditWordViewModel>(this, m =>
+            Messenger.Default.Register<ShowEditWordViewModelMessage>(this, m =>
             {
                 DialogTitle = m.WindowTitle;
-                CurrentContent = ViewModelLocator.EditWordViewModel;
-                var editVm = (EditWordViewModel)CurrentContent;
-                editVm.SaveOrigin(m.CurrentWord);
+                var editVm = ViewModelLocator.EditWordViewModel;
+                editVm.SaveOriginalWord(m.CurrentWord);
                 editVm.CurrentWord = m.CurrentWord;
-                editVm.SelectedCulture =
-                    editVm.Cultures.SingleOrDefault(c => c.ValueMember.Equals(m.CurrentWord?.Culture)) ??
-                    editVm.Cultures.First();
+                CurrentContent = editVm;
             });
-            Messenger.Default.Register<ShowAddWordViewModel>(this, m =>
+            Messenger.Default.Register<ShowAddWordViewModelMessage>(this, m =>
             {
                 DialogTitle = m.WindowTitle;
                 var content = ViewModelLocator.AddNewWordViewModel;
@@ -69,8 +75,7 @@ namespace Vocabulary.ViewModels
             CurrentContent.HandleDialogResultOk();
             Messenger.Default.Send(new DialogResultOkMessage());
         }
-
-
+        
         private void MakeDialogToBeCancel()
         {
             CurrentContent.HandleDialogResultCancel();

@@ -66,6 +66,7 @@
     <Compile Include="Models\SpeechPart.cs" />
     <Compile Include="Models\UsageSample.cs" />
     <Compile Include="Models\WordTranslation.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>

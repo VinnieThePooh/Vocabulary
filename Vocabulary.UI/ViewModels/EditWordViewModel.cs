@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using GalaSoft.MvvmLight.Messaging;
+using Vocabulary.Infrastructure.Dialogs;
+using Vocabulary.Infrastructure.Helpers;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.Infrastructure;
 using Vocabulary.Models.Models;
 using Vocabulary.Models.Validators;
 using Vocabulary.ViewModels.Abstract;
-using ComboBoxItem = Vocabulary.Infrastructure.ComboBoxItem;
+
 
 namespace Vocabulary.ViewModels
 {
@@ -21,31 +24,19 @@ namespace Vocabulary.ViewModels
         protected readonly IWordValidator wordValidator;
         private string validationMessage;
         private EnglishWord currentWord;
-        private EnglishWord originWord;
-        private Infrastructure.ComboBoxItem selectedCultureValue;
 
         #endregion
 
         #region Constructors
 
-        public EditWordViewModel(IWordValidator validator)
+        public EditWordViewModel(IWordValidator validator, IEnglishWordRepository repository)
         {
+            wordsRepository = repository ?? throw new ArgumentNullException(nameof(repository));
             wordValidator = validator ?? throw new ArgumentNullException(nameof(wordValidator));
-            Cultures = GetCultures();
+            Cultures = CulturesHelper.GetAllCultures();
         }
 
-        private IEnumerable<ComboBoxItem> GetCultures()
-        {
-            foreach (var culture in Enum.GetValues(typeof(Culture)))
-            {
-                var item = new Infrastructure.ComboBoxItem()
-                {
-                    ValueMember = (int) culture,
-                    DisplayMember = Enum.GetName(typeof(Culture), culture)
-                };
-                yield return item;
-            }
-        }
+        
 
         #endregion
 
@@ -61,18 +52,10 @@ namespace Vocabulary.ViewModels
             }
         }
 
-        public ComboBoxItem SelectedCulture
-        {
-            get => selectedCultureValue;
-            set
-            {
-                selectedCultureValue = value;
-                RaisePropertyChanged();
-            }
-        }
+        public IEnumerable<Culture> Cultures { get;}
 
-        public IEnumerable<Infrastructure.ComboBoxItem> Cultures { get;}
-
+        public EnglishWord OriginalWord { get; private set; }
+        
         public string ValidationMessage
         {
             get => validationMessage;
@@ -87,19 +70,35 @@ namespace Vocabulary.ViewModels
 
         #region Interface
 
-        public void SaveOrigin(EnglishWord word)
+        public override void HandleDialogResultOk()
         {
-            if (word == null) throw new ArgumentNullException(nameof(word));
-            originWord = CloneWord(word);
+            SaveChanges(CurrentWord);
         }
 
-        public override void HandleDialogResultOk() => SaveChanges(CurrentWord);
+        public override void HandleDialogResultCancel()
+        {
+            RestoreOriginalValues();
+        }
 
-        public override void HandleDialogResultCancel() => CancelChanges();
+        public void SaveOriginalWord(EnglishWord word)
+        {
+            if (word == null)
+                throw new ArgumentNullException(nameof(word));
+            OriginalWord = CloneWord(word);
+        }
 
         #endregion
 
         #region Implementation details
+
+        private void RestoreOriginalValues()
+        {
+            CurrentWord.Text = OriginalWord.Text;
+            CurrentWord.Culture = OriginalWord.Culture;
+            CurrentWord.Transcription = OriginalWord.Transcription;
+            CurrentWord.Translations = OriginalWord.Translations;
+            CurrentWord.Synonyms = OriginalWord.Synonyms;
+        }
 
         private void SaveChanges(EnglishWord updatedWord)
         {
@@ -110,25 +109,22 @@ namespace Vocabulary.ViewModels
                 return;
             }
             SaveChangesInternal(updatedWord);
+            Messenger.Default.Send(new ShowEditViewModelDialogOkMessage(CurrentWord));
         }
-
-        private void CancelChanges()
-        {
-            CurrentWord = originWord;
-        }
-
+        
         private EnglishWord CloneWord(EnglishWord word)
-        {   
-            if (word == null)
-                return null;
-
-            using (var stream = new MemoryStream())
+        {
+            var clone = new EnglishWord
             {
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, word);
-                stream.Position = 0;
-                return (EnglishWord) formatter.Deserialize(stream);
-            }
+                EnglishWordId = word.EnglishWordId,
+                Text = word.Text,
+                Culture = word.Culture,
+                AdditionDate = word.AdditionDate,
+                Synonyms = word.Synonyms,
+                Translations = word.Translations,
+                Transcription = word.Transcription
+            };
+            return clone;
         }
 
         protected virtual bool Validate(EnglishWord updatedWord)

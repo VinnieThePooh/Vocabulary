@@ -122,6 +122,6 @@
                 <TextBlock Text="Test status"/>
             </StatusBarItem>
         </StatusBar>
-        <ContentControl Name="Content" Grid.Row="1" Grid.Column="2" Content="{Binding DynamicViewModel, Mode=TwoWay}"/>
+        <ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding DynamicViewModel, Mode=TwoWay}"/>
     </Grid>
 </Window>

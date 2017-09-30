@@ -76,8 +76,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Infrastructure\ComboBoxItem.cs" />
     <Compile Include="Infrastructure\Dialogs\Messages.cs" />
+    <Compile Include="Infrastructure\Helpers\CulturesHelper.cs" />
     <Compile Include="Infrastructure\Helpers\InitializationHelper.cs" />
     <Compile Include="Infrastructure\TabItemModel.cs" />
     <Compile Include="ViewModels\AddNewWordViewModel.cs" />

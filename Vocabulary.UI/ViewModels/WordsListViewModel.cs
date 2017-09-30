@@ -67,14 +67,14 @@ namespace Vocabulary.ViewModels
 
         private void AddNewWord()
         {
-            Messenger.Default.Send(new ShowAddWordViewModel(new EnglishWord(), "Add new"));
+            Messenger.Default.Send(new ShowAddWordViewModelMessage(new EnglishWord(), "Add new"));
         }
 
 
         // todo: refactor
         private void EditWord(EnglishWord word)
         {
-            Messenger.Default.Send(new ShowEditWordViewModel(CurrentWord, "Edit word"));
+            Messenger.Default.Send(new ShowEditWordViewModelMessage(CurrentWord, "Edit word"));
         }
 
         private void AddSynonym(EnglishWord word)

@@ -50,10 +50,8 @@
         </DockPanel>
         <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Label HorizontalAlignment="Center" Content="Culture"/>
-            <ComboBox ItemsSource="{Binding Cultures}" 
-                      DisplayMemberPath="DisplayMember" 
-                      SelectedValuePath="ValueMember" 
-                      SelectedItem="{Binding SelectedCulture, Mode=TwoWay}"></ComboBox>
+            <ComboBox ItemsSource="{Binding Cultures, Mode=OneTime}"
+                      SelectedItem="{Binding CurrentWord.Culture, Mode=TwoWay}"/>
             </DockPanel>
        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
            <Label Content="Transcription"/>
