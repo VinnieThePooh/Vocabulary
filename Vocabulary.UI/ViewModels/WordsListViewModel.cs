@@ -24,6 +24,11 @@ namespace Vocabulary.ViewModels
             EditWordCommand = new RelayCommand<EnglishWord>(EditWord, w => w != null);
             AddSynonymCommand = new RelayCommand<EnglishWord>(AddSynonym, w => w != null);
             DeleteWordCommand = new RelayCommand<EnglishWord>(DeleteWord, w => w != null);
+
+            Messenger.Default.Register<ShowAddWordDialogOkMessage>(this, m =>
+            {
+                EnglishWords.Add(m.NewWord);
+            });
         }
 
         public ObservableCollection<EnglishWord> EnglishWords
@@ -69,7 +74,6 @@ namespace Vocabulary.ViewModels
         {
             Messenger.Default.Send(new ShowAddWordViewModelMessage(new EnglishWord(), "Add new"));
         }
-
 
         // todo: refactor
         private void EditWord(EnglishWord word)

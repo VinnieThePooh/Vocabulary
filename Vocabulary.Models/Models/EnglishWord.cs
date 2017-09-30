@@ -15,6 +15,7 @@ namespace Vocabulary.Models.Models
         private Culture culture;
         private string transcription;
         private DateTime additionDate;
+        private int englishWordId;
 
         public EnglishWord()
         {
@@ -22,7 +23,15 @@ namespace Vocabulary.Models.Models
             Synonyms = new ObservableCollection<EnglishWord>();
         }
 
-        public int EnglishWordId { get; set; }
+        public int EnglishWordId
+        {
+            get => englishWordId;
+            set
+            {
+                englishWordId = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Text
         {

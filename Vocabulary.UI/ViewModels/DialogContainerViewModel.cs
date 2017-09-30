@@ -9,19 +9,35 @@ namespace Vocabulary.ViewModels
 {
    public class DialogContainerViewModel: ViewModelBase
     {
-        private NotifiableViewModelBase currentContent;
+        private IDialogNotifiableViewModel currentContent;
         private string dialogTitle;
+        private string validationErrorMessage;
 
         public DialogContainerViewModel()
         {
             RegisterToMessages();   
             DialogResultOkCommand = new RelayCommand(MakeDialogToBeOk);
             DialogResultCancelCommand = new RelayCommand(MakeDialogToBeCancel);
+
+            Messenger.Default.Register<ValidationErrorMessage>(this, m =>
+            {
+                ValidationErrorMessage = m.ErrorMessage;
+            });
         }
 
         public RelayCommand DialogResultOkCommand { get; }
 
         public RelayCommand DialogResultCancelCommand { get; }
+
+        public string ValidationErrorMessage
+        {
+            get => validationErrorMessage;
+            set
+            {
+                validationErrorMessage = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public string DialogTitle
         {
@@ -33,7 +49,7 @@ namespace Vocabulary.ViewModels
             }
         }
 
-        public NotifiableViewModelBase CurrentContent
+        public IDialogNotifiableViewModel CurrentContent
         {
             get => currentContent;
             set
@@ -72,8 +88,8 @@ namespace Vocabulary.ViewModels
 
         private void MakeDialogToBeOk()
         {
+            ValidationErrorMessage = "";
             CurrentContent.HandleDialogResultOk();
-            Messenger.Default.Send(new DialogResultOkMessage());
         }
         
         private void MakeDialogToBeCancel()

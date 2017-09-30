@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using Vocabulary.Infrastructure.Dialogs;
 using Vocabulary.Infrastructure.Helpers;
@@ -16,7 +15,7 @@ using Vocabulary.ViewModels.Abstract;
 namespace Vocabulary.ViewModels
 {
     // must be as abstract base class actually
-   public class EditWordViewModel: NotifiableViewModelBase
+   public class EditWordViewModel: ViewModelBase, IDialogNotifiableViewModel
     {
         #region Fields
 
@@ -59,7 +58,7 @@ namespace Vocabulary.ViewModels
         public string ValidationMessage
         {
             get => validationMessage;
-            private set
+            protected set
             {
                 validationMessage = value;
                 RaisePropertyChanged();
@@ -70,12 +69,19 @@ namespace Vocabulary.ViewModels
 
         #region Interface
 
-        public override void HandleDialogResultOk()
+        public virtual void HandleDialogResultOk()
         {
-            SaveChanges(CurrentWord);
+            ValidationMessage = string.Empty;
+            var result = SaveChanges(CurrentWord);
+            if (result)
+            {
+                Messenger.Default.Send(new DialogResultOkMessage());
+                return;
+            }
+            Messenger.Default.Send(new ValidationErrorMessage(ValidationMessage));
         }
 
-        public override void HandleDialogResultCancel()
+        public virtual void HandleDialogResultCancel()
         {
             RestoreOriginalValues();
         }
@@ -100,16 +106,16 @@ namespace Vocabulary.ViewModels
             CurrentWord.Synonyms = OriginalWord.Synonyms;
         }
 
-        private void SaveChanges(EnglishWord updatedWord)
+        protected bool SaveChanges(EnglishWord updatedWord)
         {
             if (!Validate(updatedWord))
             {
                 var keyValue = wordValidator.Errors.First(e => e.Value.Any());
                 ValidationMessage = keyValue.Value.First();
-                return;
+                return false;
             }
             SaveChangesInternal(updatedWord);
-            Messenger.Default.Send(new ShowEditViewModelDialogOkMessage(CurrentWord));
+            return true;
         }
         
         private EnglishWord CloneWord(EnglishWord word)
@@ -129,7 +135,7 @@ namespace Vocabulary.ViewModels
 
         protected virtual bool Validate(EnglishWord updatedWord)
         {
-            wordValidator.Validate(updatedWord, false);
+            wordValidator.Validate(updatedWord,false);
             return !wordValidator.HasErrors;
         }
 

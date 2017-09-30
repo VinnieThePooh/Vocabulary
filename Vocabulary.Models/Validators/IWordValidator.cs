@@ -7,7 +7,7 @@ namespace Vocabulary.Models.Validators
     public interface IWordValidator
     {
         IDictionary<string,List<string>> Errors { get; }
-        void Validate(EnglishWord entity, bool checkWhetherUnique = true);
+        void Validate(EnglishWord entity, bool addNew = true);
         bool HasErrors { get;}
     }
 }

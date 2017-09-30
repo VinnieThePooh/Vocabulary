@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq.Expressions;
 using System.Reflection;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.Models;
@@ -20,7 +22,7 @@ namespace Vocabulary.Models.Validators
 
 
         public IDictionary<string, List<string>> Errors { get; }
-        public void Validate(EnglishWord entity, bool checkIsUnique=true)
+        public void Validate(EnglishWord entity, bool addNew=true)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
             ClearState();
@@ -31,16 +33,19 @@ namespace Vocabulary.Models.Validators
                 Errors[nameof(EnglishWord.Text)].Add(Resources.ValTextCantBeEmpty);
                 return;
             }
+            
+            Expression<Func<EnglishWord, bool>> predicate;
+            var lowerText = entity.Text.ToLower(CultureInfo.InvariantCulture);
+            if (!addNew)
+                predicate = w => w.Text.ToLower().Equals(lowerText) && !w.EnglishWordId.Equals(entity.EnglishWordId);
+            else
+                predicate = w => w.Text.ToLower().Equals(lowerText);
 
-            if (!checkIsUnique)
-                return;
-
-            var word = wordsRepository.GetSingleWordByFilter(w => w.Text.Equals(entity.Text));
+            var word = wordsRepository.GetSingleWordByFilter(predicate);
             if (word != null)
             {
                 HasErrors = true;
-                Errors[nameof(EnglishWord.Text)].Add(String.Format(Resources.ValTextWordAlreadyExists,entity.Text));
-                return;
+                Errors[nameof(EnglishWord.Text)].Add(String.Format(Resources.ValTextWordAlreadyExists, entity.Text));
             }
         }
          
