@@ -76,11 +76,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Infrastructure\Dialogs\Messages.cs" />
+    <Compile Include="Infrastructure\Messages\BasicMessages.cs" />
+    <Compile Include="Infrastructure\Messages\ShowAddWordDialogOkMessage.cs" />
+    <Compile Include="Infrastructure\Messages\ShowAddWordViewModelMessage.cs" />
+    <Compile Include="Infrastructure\Messages\ShowEditWordViewModelMessage.cs" />
     <Compile Include="Infrastructure\Helpers\CulturesHelper.cs" />
     <Compile Include="Infrastructure\Helpers\InitializationHelper.cs" />
+    <Compile Include="Infrastructure\Messages\ValidationErrorMessage.cs" />
     <Compile Include="Infrastructure\TabItemModel.cs" />
     <Compile Include="ViewModels\AddNewWordViewModel.cs" />
+    <Compile Include="ViewModels\ConsumptionAreasListViewModel.cs" />
     <Compile Include="ViewModels\DialogContainerViewModel.cs" />
     <Compile Include="ViewModels\EditWordViewModel.cs" />
     <Compile Include="ViewModels\Abstract\IDialogNotifiableViewModel.cs" />

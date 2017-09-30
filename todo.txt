@@ -1,0 +1,23 @@
+1. Add collection properties editing (Translations, Synonyms)
+2. EnglishWord Validation +-
+3. Delete word
+4. Add synonyms
+5. Consumption areas
+   - List
+   - Add
+   - Delete
+   - Edit
+
+
+
+
+N.Improve UI
+
+
+
+
+
+
+
+BUGS:
+1. Resources disposition problem

@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Vocabulary.Infrastructure.Dialogs;
+using Vocabulary.Infrastructure.Messages;
 using Vocabulary.ViewModels.Abstract;
 
 namespace Vocabulary.ViewModels
@@ -18,11 +18,6 @@ namespace Vocabulary.ViewModels
             RegisterToMessages();   
             DialogResultOkCommand = new RelayCommand(MakeDialogToBeOk);
             DialogResultCancelCommand = new RelayCommand(MakeDialogToBeCancel);
-
-            Messenger.Default.Register<ValidationErrorMessage>(this, m =>
-            {
-                ValidationErrorMessage = m.ErrorMessage;
-            });
         }
 
         public RelayCommand DialogResultOkCommand { get; }
@@ -83,6 +78,11 @@ namespace Vocabulary.ViewModels
                 var content = ViewModelLocator.AddNewWordViewModel;
                 content.CurrentWord = m.CurrentWord;
                 CurrentContent = content;
+            });
+
+            Messenger.Default.Register<ValidationErrorMessage>(this, m =>
+            {
+                ValidationErrorMessage = m.ErrorMessage;
             });
         }
 
