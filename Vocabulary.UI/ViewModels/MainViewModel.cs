@@ -43,6 +43,7 @@ namespace Vocabulary.ViewModels
         public MainViewModel()
         {
             ExitCommand = new RelayCommand<Window>(ExitFromApplication);
+            ReopenApplicationCommand = new RelayCommand(ReopenApp);
             TabItemsCollection = new ObservableCollection<TabItemModel>(new List<TabItemModel>
             {
                 new TabItemModel {TabItemTitle = "List", ViewModelType = typeof(WordsListViewModel)},
@@ -94,6 +95,8 @@ namespace Vocabulary.ViewModels
 
         public RelayCommand<Window> ExitCommand { get; }
 
+        public RelayCommand ReopenApplicationCommand { get;}
+
         #endregion
 
 
@@ -102,6 +105,11 @@ namespace Vocabulary.ViewModels
         #region Implementation details
 
         private void ExitFromApplication(Window window) => window?.Close();
+
+        private void ReopenApp()
+        {
+            
+        }
 
         #endregion
     }

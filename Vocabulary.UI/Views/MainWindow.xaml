@@ -104,6 +104,7 @@
               Grid.ColumnSpan="3">
             <MenuItem Header="_File">
                 <MenuItem Header="_Exit" Command="{Binding ExitCommand}" CommandParameter="{Binding ElementName= TestWindow}"/>
+                <MenuItem Header="_Reopen app" Command="{Binding ExitCommand}" CommandParameter="{Binding ElementName= TestWindow}"/>
             </MenuItem>
         </Menu>
         <TabControl MinWidth="150" MaxWidth="360" Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto"
