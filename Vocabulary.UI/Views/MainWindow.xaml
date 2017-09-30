@@ -15,6 +15,9 @@
         <DataTemplate DataType="{x:Type viewModels:WordsListViewModel}">
                <views:WordsListView />
          </DataTemplate>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Height" Value="28"/>
+        </Style>
         <Style TargetType="{x:Type TabControl}">
             <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="Margin" Value="0"/>

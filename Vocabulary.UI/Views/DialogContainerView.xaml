@@ -39,8 +39,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Column="1" Width="160">
-                <Button HorizontalAlignment="Right" DockPanel.Dock="Right" Content="OK" Command="{Binding DialogResultOkCommand}"/>
-                <Button HorizontalAlignment="Right" DockPanel.Dock="Right" Content="Cancel" Command="{Binding DialogResultCancelCommand}"/>
+                <Button HorizontalAlignment="Right" DockPanel.Dock="Right" IsDefault="True" Content="OK" Command="{Binding DialogResultOkCommand}"/>
+                <Button HorizontalAlignment="Right" DockPanel.Dock="Right" IsCancel="True" Content="Cancel" Command="{Binding DialogResultCancelCommand}"/>
             </DockPanel>
         </Grid>
         <StatusBar Height="Auto"

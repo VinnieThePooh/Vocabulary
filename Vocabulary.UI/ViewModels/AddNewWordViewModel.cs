@@ -2,10 +2,10 @@
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Vocabulary.Infrastructure.Dialogs;
+using Vocabulary.Infrastructure.Messages;
 using Vocabulary.Models.DataAccess.Interfaces;
 using Vocabulary.Models.Models;
 using Vocabulary.Models.Validators;
-using Vocabulary.ViewModels.Abstract;
 
 namespace Vocabulary.ViewModels
 {

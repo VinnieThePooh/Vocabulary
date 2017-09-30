@@ -49,7 +49,7 @@ namespace Vocabulary.ViewModels
                 new TabItemModel {TabItemTitle = "List", ViewModelType = typeof(WordsListViewModel)},
                 new TabItemModel {TabItemTitle = "TestTabItem", ViewModelType = null},
                 new TabItemModel {TabItemTitle = "TestTabItem2", ViewModelType = null},
-                new TabItemModel {TabItemTitle = "Consumption Areas", ViewModelType = null},
+                new TabItemModel {TabItemTitle = "Handbooks", ViewModelType = typeof(HandBooksViewModel)}
             });
             SelectedTabItem = TabItemsCollection[0];
         }

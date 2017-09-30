@@ -13,6 +13,6 @@ namespace Vocabulary.ViewModels
 
         public ObservableCollection<ConsumptionArea> Areas { get;}
 
-        public ConsumptionArea Seleclted { get; set; }
+        public ConsumptionArea Selected { get; set; }
     }
 }
