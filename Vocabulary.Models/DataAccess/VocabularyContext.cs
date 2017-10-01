@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
-using Vocabulary.Models.DataAccess.Configurations;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.DataAccess.Configurations;
+using Vocabulary.Core.Models;
 
-namespace Vocabulary.Models.DataAccess
+namespace Vocabulary.Core.DataAccess
 {
    public class VocabularyContext: DbContext
     {

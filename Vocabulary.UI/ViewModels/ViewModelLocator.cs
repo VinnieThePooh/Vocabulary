@@ -15,10 +15,10 @@
 using System;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using Vocabulary.Models.DataAccess;
-using Vocabulary.Models.DataAccess.Interfaces;
-using Vocabulary.Models.DataAccess.Repositories;
-using Vocabulary.Models.Validators;
+using Vocabulary.Core.DataAccess;
+using Vocabulary.Core.DataAccess.Interfaces;
+using Vocabulary.Core.DataAccess.Repositories;
+using Vocabulary.Core.Validators;
 
 namespace Vocabulary.ViewModels
 {

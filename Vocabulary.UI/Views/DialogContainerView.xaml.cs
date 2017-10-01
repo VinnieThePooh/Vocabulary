@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Infrastructure.Dialogs;
+using Vocabulary.Infrastructure.Messages;
 using Vocabulary.ViewModels;
 
 namespace Vocabulary.Views

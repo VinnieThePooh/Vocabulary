@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Vocabulary.Models.Annotations;
-using Vocabulary.Models.Infrastructure;
+using Vocabulary.Core.Infrastructure;
+using Vocabulary.Core.Annotations;
 
-namespace Vocabulary.Models.Models
+namespace Vocabulary.Core.Models
 {
    [Serializable]
    public class EnglishWord: INotifyPropertyChanged

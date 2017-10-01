@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Vocabulary.Models.Models
+namespace Vocabulary.Core.Models
 {
    public class UsageSample
     {

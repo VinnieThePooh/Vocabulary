@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using Vocabulary.Models.Infrastructure;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.Infrastructure;
+using Vocabulary.Core.Models;
 
-namespace Vocabulary.Models.DataAccess.Configurations
+namespace Vocabulary.Core.DataAccess.Configurations
 {
    public class UsagesSampleConfiguration: EntityTypeConfiguration<UsageSample>
     {

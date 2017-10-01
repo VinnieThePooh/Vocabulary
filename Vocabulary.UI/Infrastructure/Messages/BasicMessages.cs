@@ -1,9 +1,6 @@
-﻿using System;
-using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Models.Annotations;
-using Vocabulary.Models.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
 
-namespace Vocabulary.Infrastructure.Dialogs
+namespace Vocabulary.Infrastructure.Messages
 {
     public class ShowUserControlMessage: MessageBase { }
 

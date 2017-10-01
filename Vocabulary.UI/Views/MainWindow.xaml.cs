@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using Vocabulary.Models.DataAccess;
+using Vocabulary.Core.DataAccess;
 using Vocabulary.ViewModels;
 
 namespace Vocabulary

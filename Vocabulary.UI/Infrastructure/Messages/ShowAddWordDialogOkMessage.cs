@@ -1,7 +1,7 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Models.Annotations;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.Annotations;
+using Vocabulary.Core.Models;
 
 namespace Vocabulary.Infrastructure.Messages
 {

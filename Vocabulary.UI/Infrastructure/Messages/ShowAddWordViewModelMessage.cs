@@ -1,4 +1,4 @@
-﻿using Vocabulary.Models.Models;
+﻿using Vocabulary.Core.Models;
 
 namespace Vocabulary.Infrastructure.Messages
 {

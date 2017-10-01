@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
-using Vocabulary.Models.Infrastructure;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.Infrastructure;
+using Vocabulary.Core.Models;
 
-namespace Vocabulary.Models.DataAccess.Configurations
+namespace Vocabulary.Core.DataAccess.Configurations
 {
    public class ConsumptionAreaConfiguration: EntityTypeConfiguration<ConsumptionArea>
     {

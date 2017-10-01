@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Vocabulary.Models.Infrastructure;
+using Vocabulary.Core.Infrastructure;
 
 namespace Vocabulary.Infrastructure.Helpers
 {

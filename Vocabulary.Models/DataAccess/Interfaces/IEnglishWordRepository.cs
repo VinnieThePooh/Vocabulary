@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.Models;
 
-namespace Vocabulary.Models.DataAccess.Interfaces
+namespace Vocabulary.Core.DataAccess.Interfaces
 {
     public interface IEnglishWordRepository
     {

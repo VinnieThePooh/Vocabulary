@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Vocabulary.Models.Infrastructure
+namespace Vocabulary.Core.Infrastructure    
 {
     public enum Culture
     {

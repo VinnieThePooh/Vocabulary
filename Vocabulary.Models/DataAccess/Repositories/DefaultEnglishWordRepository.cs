@@ -3,10 +3,10 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using Vocabulary.Models.DataAccess.Interfaces;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.DataAccess.Interfaces;
+using Vocabulary.Core.Models;
 
-namespace Vocabulary.Models.DataAccess.Repositories
+namespace Vocabulary.Core.DataAccess.Repositories
 {
    public class DefaultEnglishWordRepository: IEnglishWordRepository
    {

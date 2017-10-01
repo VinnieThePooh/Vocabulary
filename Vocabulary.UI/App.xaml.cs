@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Windows;
 using Vocabulary.Infrastructure.Helpers;
-using Vocabulary.Models.DataAccess;
+using Vocabulary.Core.DataAccess;
 using static Vocabulary.Infrastructure.Helpers.InitializationHelper;
 
 namespace Vocabulary

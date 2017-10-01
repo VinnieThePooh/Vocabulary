@@ -1,4 +1,4 @@
-﻿namespace Vocabulary.Models.Infrastructure
+﻿namespace Vocabulary.Core.Infrastructure
 {
     public static class SpeechPartNames
     {

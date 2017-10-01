@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Infrastructure.Dialogs;
+using Vocabulary.Core.Infrastructure;
 using Vocabulary.Infrastructure.Helpers;
 using Vocabulary.Infrastructure.Messages;
-using Vocabulary.Models.DataAccess.Interfaces;
-using Vocabulary.Models.Infrastructure;
-using Vocabulary.Models.Models;
-using Vocabulary.Models.Validators;
+using Vocabulary.Core.DataAccess.Interfaces;
+using Vocabulary.Core.Models;
+using Vocabulary.Core.Validators;
 using Vocabulary.ViewModels.Abstract;
 
 

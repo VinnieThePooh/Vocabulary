@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Infrastructure.Dialogs;
+using Vocabulary.Infrastructure.Messages;
 
 namespace Vocabulary.Views
 {

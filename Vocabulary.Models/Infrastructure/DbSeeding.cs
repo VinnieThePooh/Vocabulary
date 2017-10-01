@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using Vocabulary.Models.DataAccess;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.DataAccess;
+using Vocabulary.Core.Models;
 
-namespace Vocabulary.Models.Infrastructure
+namespace Vocabulary.Core.Infrastructure
 {
     public static class DbSeeding
     {

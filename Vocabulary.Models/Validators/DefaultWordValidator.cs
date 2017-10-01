@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
-using Vocabulary.Models.DataAccess.Interfaces;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.DataAccess.Interfaces;
+using Vocabulary.Core.Models;
 
-namespace Vocabulary.Models.Validators
+namespace Vocabulary.Core.Validators
 {
     public class DefaultWordValidator: IWordValidator
     {

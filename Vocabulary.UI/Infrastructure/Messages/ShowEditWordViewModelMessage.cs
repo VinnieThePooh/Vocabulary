@@ -1,6 +1,6 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.Models;
 
 namespace Vocabulary.Infrastructure.Messages    
 {

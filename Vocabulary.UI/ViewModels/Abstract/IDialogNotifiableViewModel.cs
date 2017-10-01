@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-
-namespace Vocabulary.ViewModels.Abstract
+﻿namespace Vocabulary.ViewModels.Abstract
 {
     public interface IDialogNotifiableViewModel
     {

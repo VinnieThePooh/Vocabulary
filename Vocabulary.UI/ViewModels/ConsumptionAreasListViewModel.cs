@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.Models;
 
 namespace Vocabulary.ViewModels
 {

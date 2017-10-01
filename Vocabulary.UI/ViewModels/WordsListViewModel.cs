@@ -3,10 +3,9 @@ using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Infrastructure.Dialogs;
 using Vocabulary.Infrastructure.Messages;
-using Vocabulary.Models.DataAccess.Interfaces;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.DataAccess.Interfaces;
+using Vocabulary.Core.Models;
 
 namespace Vocabulary.ViewModels
 {

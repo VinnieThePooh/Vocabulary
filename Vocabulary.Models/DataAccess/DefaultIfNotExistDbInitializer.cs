@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using Vocabulary.Models.Infrastructure;
+using Vocabulary.Core.Infrastructure;
 
-namespace Vocabulary.Models.DataAccess
+namespace Vocabulary.Core.DataAccess
 {
     public class DefaultIfNotExistDbInitializer: CreateDatabaseIfNotExists<VocabularyContext>
     {

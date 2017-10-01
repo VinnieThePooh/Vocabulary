@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Vocabulary.Models.Models
+namespace Vocabulary.Core.Models
 {
    public class ConsumptionArea
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Design;
-using Vocabulary.Models.Models;
+using Vocabulary.Core.Models;
 
-namespace Vocabulary.Models.Validators
+namespace Vocabulary.Core.Validators
 {
     public interface IWordValidator
     {
