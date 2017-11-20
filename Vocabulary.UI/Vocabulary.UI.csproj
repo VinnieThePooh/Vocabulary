@@ -40,17 +40,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="MugenMvvmToolkit, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MugenMvvmToolkit.6.5.0\lib\net45\MugenMvvmToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="MugenMvvmToolkit.WPF, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MugenMvvmToolkit.WPF.6.5.0\lib\net45\MugenMvvmToolkit.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -76,38 +73,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Infrastructure\Messages\BasicMessages.cs" />
-    <Compile Include="Infrastructure\Messages\ShowAddWordDialogOkMessage.cs" />
-    <Compile Include="Infrastructure\Messages\ShowAddWordViewModelMessage.cs" />
-    <Compile Include="Infrastructure\Messages\ShowEditWordViewModelMessage.cs" />
     <Compile Include="Infrastructure\Helpers\CulturesHelper.cs" />
     <Compile Include="Infrastructure\Helpers\InitializationHelper.cs" />
-    <Compile Include="Infrastructure\Messages\ValidationErrorMessage.cs" />
-    <Compile Include="Infrastructure\TabItemModel.cs" />
+    <Compile Include="MugenApp.cs" />
     <Compile Include="ViewModels\AddNewWordViewModel.cs" />
     <Compile Include="ViewModels\ConsumptionAreasListViewModel.cs" />
-    <Compile Include="ViewModels\DialogContainerViewModel.cs" />
     <Compile Include="ViewModels\EditWordViewModel.cs" />
-    <Compile Include="ViewModels\Abstract\IDialogNotifiableViewModel.cs" />
+    <Compile Include="ViewModels\HandBooksItemViewModel.cs" />
     <Compile Include="ViewModels\HandBooksViewModel.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\DialogContainerView.xaml.cs">
-      <DependentUpon>DialogContainerView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\WordsListItemViewModel.cs" />
     <Compile Include="Views\EditWordView.xaml.cs">
       <DependentUpon>EditWordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WordsListView.xaml.cs">
       <DependentUpon>WordsListView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\DialogContainerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\EditWordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

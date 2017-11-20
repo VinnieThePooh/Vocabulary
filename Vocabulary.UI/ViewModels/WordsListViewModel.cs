@@ -1,94 +1,86 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Infrastructure.Messages;
+using System.Threading.Tasks;
+using MugenMvvmToolkit.Models;
+using MugenMvvmToolkit.ViewModels;
 using Vocabulary.Core.DataAccess.Interfaces;
 using Vocabulary.Core.Models;
 
 namespace Vocabulary.ViewModels
 {
-   public class WordsListViewModel: ViewModelBase
+   public class WordsListViewModel: GridViewModel<EnglishWord>
     {
+        #region Fields
+
         readonly IEnglishWordRepository wordsRepository;
 
-        private ObservableCollection<EnglishWord> englishWords;
-        private EnglishWord currentWord;
+        #endregion
 
+        #region Constructors
 
         public WordsListViewModel(IEnglishWordRepository repository)
         {
             wordsRepository = repository ?? throw new ArgumentNullException(nameof(repository));
-            AddNewWordCommand = new RelayCommand(AddNewWord);
-            EditWordCommand = new RelayCommand<EnglishWord>(EditWord, w => w != null);
-            AddSynonymCommand = new RelayCommand<EnglishWord>(AddSynonym, w => w != null);
-            DeleteWordCommand = new RelayCommand<EnglishWord>(DeleteWord, w => w != null);
-
-            Messenger.Default.Register<ShowAddWordDialogOkMessage>(this, m =>
-            {
-                EnglishWords.Add(m.NewWord);
-            });
+            AddNewWordCommand = new AsyncRelayCommand<EnglishWord>(AddNewWord, CanAddWord,this);
+            EditWordCommand = new AsyncRelayCommand<EnglishWord>(EditWord, CanEditWord,this);
+            AddSynonymCommand = new AsyncRelayCommand<EnglishWord>(AddSynonym, CanAddSynonym, this);
+            DeleteWordCommand = new AsyncRelayCommand<EnglishWord>(DeleteWord, CanDeleteWord, this);
         }
 
-        public ObservableCollection<EnglishWord> EnglishWords
+        #endregion
+
+        #region Properties
+
+        public AsyncRelayCommand<EnglishWord> AddNewWordCommand { get;}
+        public AsyncRelayCommand<EnglishWord> EditWordCommand { get; }
+        public AsyncRelayCommand<EnglishWord> AddSynonymCommand { get; }
+        public AsyncRelayCommand<EnglishWord> DeleteWordCommand { get; }
+
+        #endregion
+
+        #region Implementation details
+
+        private Task AddNewWord(EnglishWord word)
         {
-            get
-            {
-                if (englishWords == null)
-                    englishWords = wordsRepository.GetAllWords();
-                return englishWords;
-            }
-
-            set
-            {
-                englishWords = value;
-                RaisePropertyChanged();
-            }
-        }
-
-
-        public EnglishWord CurrentWord
-        {
-            get => currentWord;
-            set
-            {
-                currentWord = value;
-
-                // wtf? never did something like this
-                AddSynonymCommand.RaiseCanExecuteChanged();
-                AddNewWordCommand.RaiseCanExecuteChanged();
-                EditWordCommand.RaiseCanExecuteChanged();
-                DeleteWordCommand.RaiseCanExecuteChanged();
-                RaisePropertyChanged();
-            }
-        }
-
-        public RelayCommand AddNewWordCommand { get; set; }
-        public RelayCommand<EnglishWord> EditWordCommand { get; set; }
-        public RelayCommand<EnglishWord> AddSynonymCommand { get; set; }
-        public RelayCommand<EnglishWord> DeleteWordCommand { get; set; }
-
-
-        private void AddNewWord()
-        {
-            Messenger.Default.Send(new ShowAddWordViewModelMessage(new EnglishWord(), "Add new"));
+            return Task.Run(() => { });
         }
 
         // todo: refactor
-        private void EditWord(EnglishWord word)
+        private Task EditWord(EnglishWord word)
         {
-            Messenger.Default.Send(new ShowEditWordViewModelMessage(CurrentWord, "Edit word"));
+            return Task.Run(() => { });
         }
 
-        private void AddSynonym(EnglishWord word)
+        private Task AddSynonym(EnglishWord word)
         {
-             
+            return Task.Run(() => { });
         }
 
-        private void DeleteWord(EnglishWord word)
+        private Task DeleteWord(EnglishWord word)
         {
-            
+            return Task.Run(() => { });
         }
+
+
+        private bool CanDeleteWord(EnglishWord arg)
+        {
+            return SelectedItem != null;
+        }
+
+        private bool CanAddSynonym(EnglishWord arg)
+        {
+            return SelectedItem != null;
+        }
+
+        private bool CanEditWord(EnglishWord arg)
+        {
+            return SelectedItem != null;
+        }
+
+        private bool CanAddWord(EnglishWord arg)
+        {
+            return true;
+        }
+
+        #endregion
     }
 }

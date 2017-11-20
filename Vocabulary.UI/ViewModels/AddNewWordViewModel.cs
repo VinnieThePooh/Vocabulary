@@ -1,7 +1,4 @@
 ﻿using System;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Messaging;
-using Vocabulary.Infrastructure.Messages;
 using Vocabulary.Core.DataAccess.Interfaces;
 using Vocabulary.Core.Models;
 using Vocabulary.Core.Validators;
@@ -18,7 +15,7 @@ namespace Vocabulary.ViewModels
             CurrentWord = englishWord ?? throw new ArgumentNullException(nameof(englishWord));
         }
 
-        [PreferredConstructor]
+        //[PreferredConstructor]
         public AddNewWordViewModel(IEnglishWordRepository wordsRepository, IWordValidator validator):
             base(validator, wordsRepository)
         {
@@ -34,11 +31,11 @@ namespace Vocabulary.ViewModels
             var result = SaveChanges(CurrentWord);
             if (result)
             {
-                Messenger.Default.Send(new DialogResultOkMessage());
-                Messenger.Default.Send(new ShowAddWordDialogOkMessage(CurrentWord));
+                //Messenger.Default.Send(new DialogResultOkMessage());
+                //Messenger.Default.Send(new ShowAddWordDialogOkMessage(CurrentWord));
                 return;
             }
-            Messenger.Default.Send(new ValidationErrorMessage(ValidationMessage));
+            //Messenger.Default.Send(new ValidationErrorMessage(ValidationMessage));
         }
 
         public override void HandleDialogResultCancel()

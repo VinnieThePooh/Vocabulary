@@ -1,22 +1,23 @@
-﻿using System.Data.Entity;
 using System.Windows;
-using Vocabulary.Infrastructure.Helpers;
-using Vocabulary.Core.DataAccess;
-using static Vocabulary.Infrastructure.Helpers.InitializationHelper;
+using MugenMvvmToolkit;
+using MugenMvvmToolkit.WPF.Infrastructure;
 
 namespace Vocabulary
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        public App()
         {
-            base.OnStartup(e);
-            SetDataDirectoryFolder();
-            EnsureDataDirectoryExists();
-            Database.SetInitializer(new DefaultIfNotExistDbInitializer());
+            // ReSharper disable once ObjectCreationAsStatement
+            var container = new MugenContainer();
+            InitBindings(container);
+            new Bootstrapper<MugenApp>(this, container);
+        }
+
+
+        private void InitBindings(MugenContainer mugenContainer)
+        {
+            //mugenContainer.Bind<>();
         }
     }
 }

@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
+using MugenMvvmToolkit.ViewModels;
 using Vocabulary.Core.Infrastructure;
 using Vocabulary.Infrastructure.Helpers;
-using Vocabulary.Infrastructure.Messages;
 using Vocabulary.Core.DataAccess.Interfaces;
 using Vocabulary.Core.Models;
 using Vocabulary.Core.Validators;
-using Vocabulary.ViewModels.Abstract;
+
 
 
 namespace Vocabulary.ViewModels
 {
     // must be as abstract base class actually
-   public class EditWordViewModel: ViewModelBase, IDialogNotifiableViewModel
+   public class EditWordViewModel: EditableViewModel<EnglishWord>
     {
         #region Fields
 
@@ -47,7 +45,7 @@ namespace Vocabulary.ViewModels
             set
             {
                 currentWord = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
 
@@ -61,7 +59,7 @@ namespace Vocabulary.ViewModels
             protected set
             {
                 validationMessage = value;
-                RaisePropertyChanged();
+                /*RaisePropertyChanged()*/;
             }
         }
 
@@ -75,10 +73,10 @@ namespace Vocabulary.ViewModels
             var result = SaveChanges(CurrentWord);
             if (result)
             {
-                Messenger.Default.Send(new DialogResultOkMessage());
+                //Messenger.Default.Send(new DialogResultOkMessage());
                 return;
             }
-            Messenger.Default.Send(new ValidationErrorMessage(ValidationMessage));
+            //Messenger.Default.Send(new ValidationErrorMessage(ValidationMessage));
         }
 
         public virtual void HandleDialogResultCancel()

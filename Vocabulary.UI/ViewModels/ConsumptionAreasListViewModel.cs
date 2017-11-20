@@ -1,18 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
+﻿using MugenMvvmToolkit.ViewModels;
 using Vocabulary.Core.Models;
 
 namespace Vocabulary.ViewModels
 {
-    public class ConsumptionAreasListViewModel: ViewModelBase
+    public class ConsumptionAreasListViewModel: GridViewModel<ConsumptionArea>
     {
-        public ConsumptionAreasListViewModel()
-        {
-            Areas = new ObservableCollection<ConsumptionArea>();
-        }
-
-        public ObservableCollection<ConsumptionArea> Areas { get;}
-
-        public ConsumptionArea Selected { get; set; }
     }
 }
