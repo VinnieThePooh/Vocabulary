@@ -6,6 +6,8 @@ namespace Vocabulary.Core.ViewModels
 {
     class WordsListTabItemViewModel:TabItemViewModelBase
     {
+        private ViewModelBase _contentViewModel;
+
         #region Constructors
 
         public WordsListTabItemViewModel()
@@ -22,7 +24,17 @@ namespace Vocabulary.Core.ViewModels
 
         #region Properties
 
-        public override ViewModelBase ContentViewModel { get; set; }
+        public override ViewModelBase ContentViewModel
+        {
+            get => _contentViewModel;
+            set
+            {
+                if (_contentViewModel == value)
+                    return;
+                _contentViewModel = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
     }

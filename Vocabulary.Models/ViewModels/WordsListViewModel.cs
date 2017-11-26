@@ -17,6 +17,11 @@ namespace Vocabulary.Core.ViewModels
 
         #region Constructors
 
+        public WordsListViewModel()
+        {
+            
+        }
+
         public WordsListViewModel(IEnglishWordRepository repository)
         {
             wordsRepository = repository ?? throw new ArgumentNullException(nameof(repository));

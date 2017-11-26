@@ -12,6 +12,7 @@ namespace Vocabulary.Core.ViewModels
     public class MainViewModel : MultiViewModel<TabItemViewModelBase>, IHasDisplayName
     {
         private readonly string _displayName;
+        private TabItemViewModelBase _selectedItem;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -40,6 +41,7 @@ namespace Vocabulary.Core.ViewModels
             vm.Name = vm.DisplayName;
             AddViewModel(vm, false);
         }
+
         #endregion
 
         #region Properties
@@ -49,10 +51,15 @@ namespace Vocabulary.Core.ViewModels
             get => base.SelectedItem;
             set
             {
+                var oldVal = base.SelectedItem;
+                if (oldVal == value)
+                    return;
+
                 base.SelectedItem = value;
-                OnPropertyChanged(nameof(SelectedItem));
+                RaiseSelectedItemChanged(oldVal, value);
             }
         }
+
 
         #region Commands
 
