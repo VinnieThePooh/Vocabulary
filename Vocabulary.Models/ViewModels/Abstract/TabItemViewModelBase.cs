@@ -3,9 +3,9 @@ using System.Threading;
 using MugenMvvmToolkit.Interfaces.Models;
 using MugenMvvmToolkit.ViewModels;
 
-namespace Vocabulary.ViewModels
+namespace Vocabulary.Core.ViewModels.Abstract
 {
-    public class ItemViewModelBase : ViewModelBase, IHasDisplayName
+    public abstract class TabItemViewModelBase : ViewModelBase, IHasDisplayName
     {
         #region Fields
 
@@ -15,17 +15,16 @@ namespace Vocabulary.ViewModels
 
         #region Constructors
 
-        public ItemViewModelBase()
+        protected TabItemViewModelBase()
         {
             Id = Interlocked.Increment(ref _counter);
         }
 
-        public ItemViewModelBase(string displayName):this()
+        protected TabItemViewModelBase(string displayName):this()
         {
             if (string.IsNullOrEmpty(displayName))
                    throw new ArgumentException(nameof(displayName));
             DisplayName = displayName;
-            // default as display name
             Name = displayName;
         }
 
@@ -37,9 +36,9 @@ namespace Vocabulary.ViewModels
 
         public int Id { get; }
 
-        public string DisplayName { get; }
+        public string DisplayName { get; set; }
 
-        public ViewModelBase ContentViewModel { get; set; } 
+        public abstract ViewModelBase ContentViewModel { get; set; }
 
         #endregion
     }

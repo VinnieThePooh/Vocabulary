@@ -73,17 +73,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Infrastructure\Helpers\CulturesHelper.cs" />
-    <Compile Include="Infrastructure\Helpers\InitializationHelper.cs" />
     <Compile Include="MugenApp.cs" />
-    <Compile Include="ViewModels\AddNewWordViewModel.cs" />
-    <Compile Include="ViewModels\ConsumptionAreasListViewModel.cs" />
-    <Compile Include="ViewModels\EditWordViewModel.cs" />
-    <Compile Include="ViewModels\HandBooksItemViewModel.cs" />
-    <Compile Include="ViewModels\HandBooksViewModel.cs" />
-    <Compile Include="ViewModels\ItemViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\WordsListItemViewModel.cs" />
     <Compile Include="Views\EditWordView.xaml.cs">
       <DependentUpon>EditWordView.xaml</DependentUpon>
     </Compile>
@@ -109,7 +99,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\WordsListViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -153,6 +142,9 @@
       <Project>{9885a97a-f4ca-4ffd-a5e0-61b82723d4bc}</Project>
       <Name>Vocabulary.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,7 +5,7 @@ using MugenMvvmToolkit.ViewModels;
 using Vocabulary.Core.DataAccess.Interfaces;
 using Vocabulary.Core.Models;
 
-namespace Vocabulary.ViewModels
+namespace Vocabulary.Core.ViewModels
 {
    public class WordsListViewModel: GridViewModel<EnglishWord>
     {

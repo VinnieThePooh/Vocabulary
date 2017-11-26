@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Vocabulary.Infrastructure.Helpers
+namespace Vocabulary.Core.Infrastructure.Helpers
 {
     public static class InitializationHelper
     {

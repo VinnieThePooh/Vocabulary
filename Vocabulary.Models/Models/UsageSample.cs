@@ -19,6 +19,7 @@ namespace Vocabulary.Core.Models
 
         public string SampleTranslation { get; set; }
 
+        // especially redundant
         public string ParentWordTranslation { get; set; }
 
         #endregion

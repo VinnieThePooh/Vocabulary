@@ -1,15 +1,15 @@
-﻿<Window x:Class="Vocabulary.MainWindow" 
+﻿<Window x:Class="Vocabulary.Views.MainWindow" 
         Name="TestWindow"
         MinWidth="1280"
         MinHeight="600"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:viewModels="clr-namespace:Vocabulary.ViewModels"
         xmlns:views="clr-namespace:Vocabulary.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Vocabulary.Core.ViewModels;assembly=Vocabulary.Models"
         mc:Ignorable="d"
-        Title="Main Window" Height="350" Width="525"> 
+        Title="Main Window" Height="350" Width="525">
        <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:WordsListViewModel}">
                <views:WordsListView />
@@ -90,6 +90,7 @@
             </Setter>
         </Style>
     </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -106,15 +107,16 @@
               Grid.ColumnSpan="3">
             <MenuItem Header="_File">
                 <MenuItem Header="_Exit" Command="{Binding ExitCommand}" CommandParameter="{Binding ElementName= TestWindow}"/>
-                <MenuItem Header="_Reopen app" Command="{Binding ExitCommand}" CommandParameter="{Binding ElementName= TestWindow}"/>
+                <MenuItem Header="_Reopen app" Command="{Binding ReopenAppCommand}" CommandParameter="{Binding ElementName= TestWindow}"/>
             </MenuItem>
         </Menu>
-        <TabControl MinWidth="150" MaxWidth="360" Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto"
+        <TabControl MinWidth="150"
+                    MaxWidth="360" Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto"
                     Margin="0"
-                    ItemsSource="{Binding TabItemsCollection, Mode=OneWay}"
-                    SelectedItem="{Binding SelectedTabItem, Mode=OneWay}"
-                    DisplayMemberPath="TabItemTitle"
-                    SelectedValuePath="ViewModelType">
+                    ItemsSource="{Binding ItemsSource, Mode=OneWay}"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    DisplayMemberPath="DisplayName"
+                    SelectedValuePath="Name">
         </TabControl>
         <GridSplitter Grid.Row="0" Margin="-1,0,0,0" Grid.Column="1" Width="1" Grid.RowSpan="2" BorderBrush="Yellow"/>
         <StatusBar Grid.Row="2"
@@ -125,6 +127,6 @@
                 <TextBlock Text="Test status"/>
             </StatusBarItem>
         </StatusBar>
-        <ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding DynamicViewModel, Mode=TwoWay}"/>
+        <ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding SelectedItem, Mode=TwoWay}"/>
     </Grid>
 </Window>

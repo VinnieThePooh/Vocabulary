@@ -1,9 +1,8 @@
 ﻿using System.Windows;
 using MugenMvvmToolkit.Attributes;
-using Vocabulary.Core.DataAccess;
-using Vocabulary.ViewModels;
+using Vocabulary.Core.ViewModels;
 
-namespace Vocabulary
+namespace Vocabulary.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

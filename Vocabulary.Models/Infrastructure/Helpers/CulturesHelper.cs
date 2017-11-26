@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Vocabulary.Core.Infrastructure;
 
-namespace Vocabulary.Infrastructure.Helpers
+namespace Vocabulary.Core.Infrastructure.Helpers
 {
     public static class CulturesHelper
     {

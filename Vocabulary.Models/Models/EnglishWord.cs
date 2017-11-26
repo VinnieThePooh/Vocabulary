@@ -7,7 +7,6 @@ using Vocabulary.Core.Annotations;
 
 namespace Vocabulary.Core.Models
 {
-   [Serializable]
    public class EnglishWord: INotifyPropertyChanged
     {
         private string text;
