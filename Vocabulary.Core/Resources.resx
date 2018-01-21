@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TabTitleHandbooks" xml:space="preserve">
+    <value>Handbooks</value>
+  </data>
+  <data name="TabTitleWords" xml:space="preserve">
+    <value>Words</value>
+  </data>
   <data name="ValTextCantBeEmpty" xml:space="preserve">
     <value>Text of word can not be empty</value>
   </data>

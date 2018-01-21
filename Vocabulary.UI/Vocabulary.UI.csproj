@@ -7,7 +7,7 @@
     <ProjectGuid>{8C6E7D29-9962-40DE-8BCD-37594B49C7BF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Vocabulary</RootNamespace>
-    <AssemblyName>VocabularyApp</AssemblyName>
+    <AssemblyName>VocApp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -73,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Infrastructure\PathHelpers.cs" />
     <Compile Include="MugenApp.cs" />
     <Compile Include="Views\EditWordView.xaml.cs">
       <DependentUpon>EditWordView.xaml</DependentUpon>
@@ -138,13 +140,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Vocabulary.Models\Vocabulary.Core.csproj">
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vocabulary.Core\Vocabulary.Core.csproj">
       <Project>{9885a97a-f4ca-4ffd-a5e0-61b82723d4bc}</Project>
       <Name>Vocabulary.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

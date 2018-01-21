@@ -27,10 +27,14 @@ namespace Vocabulary.Core.Infrastructure
                 
         }
 
-        private static void CorrectWordsTableSchema(VocabularyContext context)
+        private static void CorrectWordsTableSchema(VocabularyContext context)  
         {
             string constraintName = "dateDF";
             var sql = $"alter table {TableNames.Words} add constraint {constraintName} default getdate() for {nameof(EnglishWord.AdditionDate)}";
+            context.Database.ExecuteSqlCommand(TransactionalBehavior.EnsureTransaction, sql);
+
+            constraintName = "cultureDF";
+            sql = $"alter table {TableNames.Words} add constraint {constraintName} default {(int)Culture.American} for {nameof(EnglishWord.Culture)}";
             context.Database.ExecuteSqlCommand(TransactionalBehavior.EnsureTransaction, sql);
         }
 

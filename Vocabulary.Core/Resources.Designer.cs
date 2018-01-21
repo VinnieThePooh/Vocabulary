@@ -61,6 +61,24 @@ namespace Vocabulary.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Handbooks.
+        /// </summary>
+        internal static string TabTitleHandbooks {
+            get {
+                return ResourceManager.GetString("TabTitleHandbooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Words.
+        /// </summary>
+        internal static string TabTitleWords {
+            get {
+                return ResourceManager.GetString("TabTitleWords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Text of word can not be empty.
         /// </summary>
         internal static string ValTextCantBeEmpty {

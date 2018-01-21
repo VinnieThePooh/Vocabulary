@@ -28,8 +28,6 @@ namespace Vocabulary.Core.ViewModels
 
         #endregion
 
-
-
         public override ViewModelBase ContentViewModel { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using Vocabulary.Core.Infrastructure;
 using Vocabulary.Core.Annotations;
@@ -71,6 +72,9 @@ namespace Vocabulary.Core.Models
             }
         }
 
+        public int? IdSpeechPart { get; set; }
+
+        public virtual SpeechPart SpeechPart { get; set; }
         public virtual ObservableCollection<WordTranslation> Translations { get; set; }
         public virtual ObservableCollection<EnglishWord> Synonyms { get; set; }
 

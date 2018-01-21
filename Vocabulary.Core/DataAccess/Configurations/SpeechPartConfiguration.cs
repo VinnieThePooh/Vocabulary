@@ -17,7 +17,7 @@ namespace Vocabulary.Core.DataAccess.Configurations
         public SpeechPartConfiguration()
         {
             ToTable(TableNames.SpeechParts, SchemaNames.Handbooks);
-            HasMany(x => x.Translations).WithOptional(x => x.PartOfSpeech).HasForeignKey(x => x.IdPartOfSpeech);
+            HasMany(x => x.Words).WithOptional(x => x.SpeechPart).HasForeignKey(x => x.IdSpeechPart);
             Property(x => x.SpeechPartName)
                 .HasMaxLength(100)
                 .HasColumnAnnotation(IndexAnnotation.AnnotationName,new IndexAnnotation(new IndexAttribute {IsUnique = true}));

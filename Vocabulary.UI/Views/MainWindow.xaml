@@ -7,7 +7,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:views="clr-namespace:Vocabulary.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:Vocabulary.Core.ViewModels;assembly=Vocabulary.Models"
+        xmlns:viewModels="clr-namespace:Vocabulary.Core.ViewModels;assembly=Vocabulary.Core"
         mc:Ignorable="d"
         Title="Main Window" Height="350" Width="525">
     <Window.Resources>
@@ -113,10 +113,10 @@
         <TabControl MinWidth="150"
                     MaxWidth="360" Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto"
                     Margin="0,5,0,25"
-                    ItemsSource="{Binding ItemsSource, Mode=OneWay}"
-                    SelectedItem="{Binding Path=SelectedItem, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    DisplayMemberPath="DisplayName"
-                    SelectedValuePath="Name" Grid.RowSpan="2">
+                    ItemsSource="{Binding ViewModels, Mode=OneWay}"
+                    SelectedItem="{Binding Path=SelectedTabItem, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    DisplayMemberPath="TabItemDisplayName"
+                    SelectedValuePath="ViewModelType" Grid.RowSpan="2">
         </TabControl>
         <GridSplitter Grid.Row="0" Margin="-1,0,0,0" Grid.Column="1" Width="1" Grid.RowSpan="2" BorderBrush="Yellow"/>
         <StatusBar Grid.Row="2"
@@ -127,6 +127,6 @@
                 <TextBlock Text="Test status"/>
             </StatusBarItem>
         </StatusBar>
-        <ContentControl Grid.Column="2" Grid.Row="1" Content="{Binding SelectedItem, Mode=TwoWay}" Margin="10,0,1,0"/>
+        <ContentControl Grid.Column="2" Grid.Row="1" Content="{Binding CurrentViewModel, Mode=TwoWay}" Margin="10,0,1,0"/>
     </Grid>
 </Window>

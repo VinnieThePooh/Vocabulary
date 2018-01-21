@@ -6,13 +6,13 @@ namespace Vocabulary.Core.Models
     {
         public SpeechPart()
         {
-            Translations = new List<WordTranslation>();
+            Words = new List<EnglishWord>();
         }
 
         public int SpeechPartId { get; set; }
 
         public string SpeechPartName { get; set; }
 
-        public virtual List<WordTranslation> Translations { get; set; }
+        public virtual List<EnglishWord> Words { get; set; }
     }
 }
