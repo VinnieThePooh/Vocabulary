@@ -1,5 +1,6 @@
 0. Display list of words
 1. Add new word via modal dialog (synonyms, etc, full functionality modal dialog)
+  1.1 + Validation
 2. Add collection properties editing (Translations, Synonyms)
 3. EnglishWord Validation +-
 4. Delete word

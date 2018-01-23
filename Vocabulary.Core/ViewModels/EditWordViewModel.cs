@@ -33,6 +33,9 @@ namespace Vocabulary.Core.ViewModels
 
         #endregion
 
-        public string DisplayName { get; }
+        public string DisplayName
+        {
+            get { return displayName; }
+        }
     }
 }

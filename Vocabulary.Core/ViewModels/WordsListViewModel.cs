@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MugenMvvmToolkit;
 using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.ViewModels;
 using Vocabulary.Core.DataAccess.Interfaces;
@@ -22,13 +23,19 @@ namespace Vocabulary.Core.ViewModels
             
         }
 
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+        }
+
         public WordsListViewModel(IEnglishWordRepository repository)
         {
             if (repository == null)
                 throw new ArgumentNullException(nameof(repository));
 
             wordsRepository = repository;
-            AddNewWordCommand = new AsyncRelayCommand(AddNewWord, null);
+            AddNewWordCommand = new AsyncRelayCommand(AddNewWord, ()=> true, this);
             EditWordCommand = new AsyncRelayCommand<EnglishWord>(EditWord, CanEditWord,this);
             AddSynonymCommand = new AsyncRelayCommand<EnglishWord>(AddSynonym, CanAddSynonym, this);
             DeleteWordCommand = new AsyncRelayCommand<EnglishWord>(DeleteWord, CanDeleteWord, this);
@@ -53,8 +60,7 @@ namespace Vocabulary.Core.ViewModels
             {
                 var word = new EnglishWord();
                 vm.InitializeEntity(word, true);
-                 
-                //await vm.ShowAsync();
+                await vm.ShowAsync();
             }
         }
 
