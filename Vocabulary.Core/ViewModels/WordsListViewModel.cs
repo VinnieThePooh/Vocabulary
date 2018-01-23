@@ -53,7 +53,7 @@ namespace Vocabulary.Core.ViewModels
             {
                 var word = new EnglishWord();
                 vm.InitializeEntity(word, true);
-
+                 
                 //await vm.ShowAsync();
             }
         }
