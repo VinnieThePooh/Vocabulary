@@ -10,15 +10,20 @@ namespace Vocabulary
 {
     public partial class App : Application
     {
+
+        Setup setup;
+
         public App()
-        {
-            var container = new MugenContainer();
-            InitBindings(container);
+        {            
             PathHelpers.EnsureDataDirectory();
+            setup = new Setup(this);           
+
 
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
-            Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+            Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+            
         }
 
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
@@ -39,9 +44,6 @@ namespace Vocabulary
             var t = 0;
         }
 
-        private void InitBindings(MugenContainer mugenContainer)
-        {
-            //mugenContainer.Bind<>();
-        }
+       
     }
 }

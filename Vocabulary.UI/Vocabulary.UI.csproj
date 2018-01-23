@@ -73,12 +73,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Infrastructure\PathHelpers.cs" />
-    <Compile Include="MugenApp.cs" />
+    <Compile Include="Setup.cs" />
     <Compile Include="Views\EditWordView.xaml.cs">
       <DependentUpon>EditWordView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WordsListView.xaml.cs">
       <DependentUpon>WordsListView.xaml</DependentUpon>
@@ -86,10 +83,6 @@
     <Page Include="Views\EditWordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -137,9 +130,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Vocabulary.Core\Vocabulary.Core.csproj">
       <Project>{9885a97a-f4ca-4ffd-a5e0-61b82723d4bc}</Project>

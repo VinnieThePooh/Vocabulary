@@ -6,6 +6,10 @@ namespace Vocabulary.Core
 {
     public class MugenApp: MvvmApplication
     {
-        public override Type GetStartViewModelType() => typeof(MainViewModel);
+        public override Type GetStartViewModelType() => typeof(MainViewModel);        
+        
+            
+
+        
     }
 }
