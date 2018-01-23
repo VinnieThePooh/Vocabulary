@@ -10,12 +10,19 @@ namespace Vocabulary.Core.ViewModels
     
    public class EditWordViewModel: EditableViewModel<EnglishWord>, IHasDisplayName
     {
+
+        private string displayName;
+
         #region Constructors
 
-        public EditWordViewModel(string displayName)
+        public EditWordViewModel()
         {
-            DisplayName = displayName;
             Cultures = CulturesHelper.GetAllCultures();
+        }
+
+        public EditWordViewModel(string dName):this()
+        {
+            displayName = dName;
         }
 
         #endregion

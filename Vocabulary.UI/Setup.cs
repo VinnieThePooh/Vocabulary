@@ -27,7 +27,16 @@ namespace Vocabulary
 
         protected override IIocContainer CreateIocContainer()
         {
-            return new MugenContainer();
+            var mugen = new MugenContainer();
+            DoBindings(mugen);
+            return mugen;
+        }
+
+
+        //todo: think about it
+        private void DoBindings(MugenContainer container)
+        {
+            
         }
     }
 }

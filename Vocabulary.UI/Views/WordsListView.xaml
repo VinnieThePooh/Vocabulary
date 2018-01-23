@@ -54,14 +54,13 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="0" Grid.Column="1" Background="LightGray">
-            <Button Content="Add new" Command="{Binding AddNewWordCommand}"
-                    CommandParameter="{Binding CurrentWord, Mode=TwoWay}" />
+            <Button Content="Add new" Command="{Binding AddNewWordCommand}" />
             <Button Content="Edit" Command="{Binding EditWordCommand}"
-                    CommandParameter="{Binding CurrentWord, Mode=TwoWay}" />
+                    CommandParameter="{Binding SelectedItem, Mode=TwoWay}" />
             <Button Content="Add synonym" Command="{Binding AddSynonymCommand}"
-                    CommandParameter="{Binding CurrentWord, Mode=TwoWay}" />
+                    CommandParameter="{Binding SelectedItem, Mode=TwoWay}" />
             <Button Content="Delete" Command="{Binding DeleteWordCommand}"
-                    CommandParameter="{Binding CurrentWord, Mode=TwoWay}" />
+                    CommandParameter="{Binding SelectedItem, Mode=TwoWay}" />
         </StackPanel>
     </Grid>
 </UserControl>

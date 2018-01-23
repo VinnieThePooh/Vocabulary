@@ -28,7 +28,7 @@ namespace Vocabulary.Core.ViewModels
                 throw new ArgumentNullException(nameof(repository));
 
             wordsRepository = repository;
-            AddNewWordCommand = new AsyncRelayCommand<EnglishWord>(AddNewWord, CanAddWord,this);
+            AddNewWordCommand = new AsyncRelayCommand(AddNewWord, null);
             EditWordCommand = new AsyncRelayCommand<EnglishWord>(EditWord, CanEditWord,this);
             AddSynonymCommand = new AsyncRelayCommand<EnglishWord>(AddSynonym, CanAddSynonym, this);
             DeleteWordCommand = new AsyncRelayCommand<EnglishWord>(DeleteWord, CanDeleteWord, this);
@@ -38,18 +38,24 @@ namespace Vocabulary.Core.ViewModels
 
         #region Properties
 
-        public AsyncRelayCommand<EnglishWord> AddNewWordCommand { get;}
+        public AsyncRelayCommand AddNewWordCommand { get;}
         public AsyncRelayCommand<EnglishWord> EditWordCommand { get; }
         public AsyncRelayCommand<EnglishWord> AddSynonymCommand { get; }
-        public AsyncRelayCommand<EnglishWord> DeleteWordCommand { get; }
+        public AsyncRelayCommand<EnglishWord> DeleteWordCommand { get; }        
 
         #endregion
 
         #region Implementation details
 
-        private Task AddNewWord(EnglishWord word)
+        private async Task AddNewWord()
         {
-            return Task.Run(() => { });
+            using (var vm = GetViewModel<EditWordViewModel>())
+            {
+                var word = new EnglishWord();
+                vm.InitializeEntity(word, true);
+
+                //await vm.ShowAsync();
+            }
         }
 
         // todo: refactor

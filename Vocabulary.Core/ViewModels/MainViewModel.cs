@@ -6,6 +6,7 @@ using MugenMvvmToolkit;
 using MugenMvvmToolkit.Models;
 using MugenMvvmToolkit.ViewModels;
 using Vocabulary.Core.Infrastructure;
+using Vocabulary.Core.Models;
 
 namespace Vocabulary.Core.ViewModels
 {
@@ -46,6 +47,9 @@ namespace Vocabulary.Core.ViewModels
 
         public AsyncRelayCommand ReopenAppCommand { get; private set; }
 
+        public AsyncRelayCommand AddNewWordCommand { get; private set; }
+
+
         #endregion
 
         #region Implementation details
@@ -54,7 +58,7 @@ namespace Vocabulary.Core.ViewModels
         {
             base.OnInitialized();
             ExitCommand = new AsyncRelayCommand(ExitFromApplication, CanExitFromApplication);
-            ReopenAppCommand = new AsyncRelayCommand(ReopenApp, CanReopenApp);
+            ReopenAppCommand = new AsyncRelayCommand(ReopenApp, CanReopenApp);            
 
             ViewModels.AddRange(new []
             {
@@ -69,6 +73,8 @@ namespace Vocabulary.Core.ViewModels
         {
             await this.CloseAsync();
         }
+
+              
 
         private bool CanReopenApp()
         {

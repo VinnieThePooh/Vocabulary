@@ -89,7 +89,6 @@
     <Compile Include="ViewModels\Abstract\TabItemViewModelBase.cs" />
     <Compile Include="ViewModels\Handbooks\SpeechPartTabItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\WordsListTabItemViewModel.cs" />
     <Compile Include="ViewModels\WordsListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
