@@ -11,7 +11,11 @@ namespace Vocabulary.Core.Infrastructure
         {
             if (string.IsNullOrEmpty(tabItemDisplayName))
                throw new ArgumentNullException(nameof(tabItemDisplayName));
-            ViewModelType = viewModelType ?? throw new ArgumentNullException(nameof(viewModelType));
+
+            if (viewModelType == null)
+                throw new ArgumentNullException(nameof(viewModelType));
+
+            ViewModelType = viewModelType;
             TabItemDisplayName = tabItemDisplayName;
         }
 

@@ -21,7 +21,7 @@ namespace Vocabulary.Core.ViewModels
 
         public TabItemCommandParameter SelectedTabItem
         {
-            get => selectedTabItem;
+            get { return selectedTabItem; }
             set
             {
                 selectedTabItem = value;
@@ -32,7 +32,7 @@ namespace Vocabulary.Core.ViewModels
 
         public ViewModelBase CurrentViewModel
         {
-            get => currentViewModel;
+            get { return currentViewModel; }
             set
             {
                 currentViewModel = value; 

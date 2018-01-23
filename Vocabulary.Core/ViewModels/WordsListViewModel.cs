@@ -24,7 +24,10 @@ namespace Vocabulary.Core.ViewModels
 
         public WordsListViewModel(IEnglishWordRepository repository)
         {
-            wordsRepository = repository ?? throw new ArgumentNullException(nameof(repository));
+            if (repository == null)
+                throw new ArgumentNullException(nameof(repository));
+
+            wordsRepository = repository;
             AddNewWordCommand = new AsyncRelayCommand<EnglishWord>(AddNewWord, CanAddWord,this);
             EditWordCommand = new AsyncRelayCommand<EnglishWord>(EditWord, CanEditWord,this);
             AddSynonymCommand = new AsyncRelayCommand<EnglishWord>(AddSynonym, CanAddSynonym, this);

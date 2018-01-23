@@ -14,7 +14,10 @@ namespace Vocabulary.Core.DataAccess.Repositories
 
         public DefaultEnglishWordRepository(Func<VocabularyContext> context)
         {
-            getContext = context ?? throw new ArgumentNullException(nameof(context)); 
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            getContext = context;
         }
 
         public ObservableCollection<EnglishWord> GetAllWords()

@@ -15,7 +15,11 @@ namespace Vocabulary.Core.Validators
 
         public DefaultWordValidator(IEnglishWordRepository repository)
         {
-            wordsRepository = repository ?? throw new ArgumentNullException(nameof(repository));
+
+            if (repository  == null)
+                throw new ArgumentNullException(nameof(repository));
+
+            wordsRepository = repository;
             Errors = new Dictionary<string, List<string>>();
             InitState();
         }

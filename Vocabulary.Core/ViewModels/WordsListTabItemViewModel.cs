@@ -26,7 +26,7 @@ namespace Vocabulary.Core.ViewModels
 
         public override ViewModelBase ContentViewModel
         {
-            get => _contentViewModel;
+            get { return _contentViewModel; }
             set
             {
                 if (_contentViewModel == value)

@@ -24,7 +24,7 @@ namespace Vocabulary.Core.Models
 
         public int EnglishWordId
         {
-            get => englishWordId;
+            get { return englishWordId; }
             set
             {
                 englishWordId = value;
@@ -34,7 +34,7 @@ namespace Vocabulary.Core.Models
 
         public string Text
         {
-            get => text;
+            get  { return text; }
             set
             {
                 text = value;
@@ -44,7 +44,7 @@ namespace Vocabulary.Core.Models
 
         public Culture Culture
         {
-            get => culture;
+            get  { return culture; }
             set
             {
                 culture = value;
@@ -54,7 +54,7 @@ namespace Vocabulary.Core.Models
 
         public string Transcription
         {
-            get => transcription;
+            get { return transcription; }
             set
             {
                 transcription = value;
@@ -64,7 +64,7 @@ namespace Vocabulary.Core.Models
 
         public DateTime AdditionDate
         {
-            get => additionDate;
+            get { return additionDate; }
             set
             {
                 additionDate = value;
